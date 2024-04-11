@@ -14,20 +14,27 @@ async function getTemperaments(req,res){
 
         const arrDeTemperamentos = [];
 
-        response.data.forEach((x)   =>{ // Buscamos todos los comportamientos y los ponemos en el array
+        response.data.forEach(async(x)   =>{ // Buscamos todos los comportamientos y los ponemos en el array
             if( x.temperament !== undefined ){
-                const separados = x.temperament.split(",");
-                separados.forEach((y) => {
-                    arrDeTemperamentos.push(y.trim());
+                const separados = x.temperament.split(",");//posible error  por trim
+                separados.forEach(async(y) => {
+                    let em = {
+                        name: y.trim()
+                    }
+                    const newTemperament = await temperamentos.findOrCreate({
+                        where:{
+                            name:em.name
+                        }
+                    });
+
                 })
+
             }
         });
 
-        const sinRepetidos = [...new Set(arrDeTemperamentos)]
+        const dbTemperamentos = await temperamentos.findAll(); 
 
-        //GUARDARLOS EN LA DB
-        
-        res.status(200).json(sinRepetidos);
+        res.status(200).json(dbTemperamentos);
 
     }catch(error){
         console.log("error en getTemperaments.js");
