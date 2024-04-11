@@ -1,5 +1,5 @@
 const axios = require('axios'); //importamos axios para hacer la peticion get
-const { dog } = require('./db.js');
+const { dog } = require('../db.js');
 const { Sequelize } = require('sequelize');
 
 const URL = 'https://api.thedogapi.com/v1/breeds';

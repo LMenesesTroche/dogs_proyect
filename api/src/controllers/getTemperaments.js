@@ -1,22 +1,20 @@
-const axios = require('axios'); //importamos axios para hacer la peticion get
-const { temperamentos } = require('./db.js');
+const axios = require('axios'); 
+const { temperamentos } = require('../db');
 
 const URL = 'https://api.thedogapi.com/v1/breeds';
 
 
-//Debe devolver todos los comportamientos
 async function getTemperaments(req,res){
     
     try{
         
-        // SACARLOS DE LA API
-        let response = await axios.get(`${URL}`);  //hacemos la request
+        let response = await axios.get(`${URL}`); 
 
         const arrDeTemperamentos = [];
 
-        response.data.forEach(async(x)   =>{ // Buscamos todos los comportamientos y los ponemos en el array
+        response.data.forEach(async(x)   =>{ 
             if( x.temperament !== undefined ){
-                const separados = x.temperament.split(",");//posible error  por trim
+                const separados = x.temperament.split(",");
                 separados.forEach(async(y) => {
                     let em = {
                         name: y.trim()

@@ -39,6 +39,8 @@ TemperamentosModel(sequelize);
 
 const { dog, temperamentos } = sequelize.models;
 
+const Dog_Temperaments = sequelize.define("Dog_Temperaments",{},{ timestamps: false })
+
 dog.belongsToMany(temperamentos, { through: 'dogTemperamento' });
 temperamentos.belongsToMany(dog, { through: 'dogTemperamento' });
 
