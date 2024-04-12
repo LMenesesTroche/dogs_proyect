@@ -14,19 +14,6 @@ async function postDogs(req,res){
         } 
 
         const newDog = await dog.create(dogData); // creamos el perro
-
-        
-        // if (temperament && temperament.length > 0) {
-        //     const temperamentosEncontrados = await temperamentosdb.findAll({
-        //       where: {
-        //         name: temperamentos,
-        //       },
-        //     });
-        // }
-
-        // await newDog.addTemperamentos(temperamentosEncontrados);
-
-
         return res.json(newDog);
 
 
