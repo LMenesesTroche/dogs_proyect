@@ -4,17 +4,18 @@ const { Sequelize } = require('sequelize');
 
 const URL = 'https://api.thedogapi.com/v1/breeds';
 
-const name = "AffenpinScher";//Nombre falso
+// const name = "AffenpinScher";//Nombre falso
 
 //Debe devolver todas las razas de perros que coinciden con el nombre recibido por query
 async function getByName(req,res){
-    
+
     try{        
         const razas  = [];
 
         let response = await axios.get(`${URL}`);  //hacemos la request
-        // const { nam } = req.query;//nos mandan por el URL
-        
+        const { name } = req.params;//nos mandan por el URL
+
+
         const nombreSinMayusculas = name.toLowerCase();  
 
         //Sacamos todos los perros de nuestra database
@@ -35,9 +36,13 @@ async function getByName(req,res){
         );
 
         if(razas.length ===  0 ){
+            console.log("Sin resultados")
             res.status(400).json("No resultados");
+        }else{
+            res.status(200).json(razas);
         }
-        res.status(400).json(razas);
+
+        
 
 
     }catch(error){

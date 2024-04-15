@@ -5,6 +5,7 @@ const getByName = require('../controllers/getByName');
 const postDogs = require('../controllers/postDogs');
 const getTemperaments = require('../controllers/getTemperaments');
 const getById = require('../controllers/getById');
+const getByRaza = require('../controllers/getByRaza');
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -17,11 +18,14 @@ myRouter.get('/dogs',getDogs);
 
 myRouter.get('/dogs/:id',getById); 
 
-myRouter.get('/name/',getByName); 
+myRouter.get('/dogs/name/:name',getByName); 
 
 myRouter.post('/dogs',postDogs); 
 
-myRouter.get('/temperaments',getTemperaments); 
+myRouter.get('/dogs/temperaments',getTemperaments); 
+
+myRouter.get('/dogs/raza/:raza',getByRaza); 
+
 
 
 

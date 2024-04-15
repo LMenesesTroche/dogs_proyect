@@ -1,0 +1,27 @@
+.ContainerNav{
+    background-color: gray;
+    width: 350px;
+    height: 40px;
+    padding: 10px;
+    display: flex;
+    right:6px;
+    justify-content: center;
+    border-radius:5px;
+}
+
+.Button{
+    background-color: #08B2C9;
+    color: black;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.Input{
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+}

@@ -1,0 +1,13 @@
+/* Contenedor negro */
+.container{
+    /* Hace que los elementos esten alineados verticalmente */
+    display: flex;
+    /* COlor de fondo */
+    background-color: rgb(255, 255, 255);
+    
+    height: 60px;
+    
+   
+  }
+  
+ 
