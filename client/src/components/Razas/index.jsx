@@ -1,10 +1,13 @@
 import styles from './styles.module.css';
 
-export default function Card({ raza }) {
+export default function Card({ imagen, nombre, peso, temperamento }) {
 
    return (
       <div className={styles.container}>
-        <h2 >{raza}</h2>
+        <img src={imagen}></img>
+        <h2 >{nombre}</h2>
+        <h2 >{peso}</h2>
+        <h2 >{temperamento}</h2>
       </div>
    );
 }

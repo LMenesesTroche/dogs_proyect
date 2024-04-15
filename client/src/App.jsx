@@ -16,12 +16,14 @@ function App() {
   const onSearch = async (id) => {
 
     try{
-      let response = await  axios(URL + `/name/${id}`);
-      if(response.data){
-        dispatch(addRaza(response.data));
-      }else{
-        console.log("No hay resultados")
-      }
+      let response = await  axios(URL + `/raza/${id}`);
+      response.data.forEach(element => {
+        if(element){ //mando un objeto a la vez
+          // console.log(element)
+          dispatch(addRaza(element));
+        }
+      });
+      
     }catch(error){
       console.log(error.message);
 
