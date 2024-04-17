@@ -7,7 +7,6 @@ export const Home = () => {
   const razas = useSelector(initialState => initialState.misRazas);
   return (
     <div className={styles.container}>
-      
       {razas? razas.map((element)=>(
         <Card 
         key={element.id}

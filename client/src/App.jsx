@@ -16,6 +16,7 @@ function App() {
 
   const onSearch = async (id) => {
     try{
+      // console.log("Hola")
       let response = await  axios(URL + `/raza/${id}`);
       response.data.forEach( async element => {
         if(element){ //mando un objeto a la vez;
@@ -31,20 +32,23 @@ function App() {
 
   return (
     <div className='App'>
-       { 
+          { 
             location.pathname !== '/' ?
             <Nav onSearch={onSearch} /> :
             undefined
-         }
+          }
       <Routes>
-        
+
+        {/* LOGIN */}
         <Route path='/' element={
           <Login />
         } />
 
+        {/* Home */}
         <Route path='/home' element={
           <Home />
         } />
+
         <Route path='/listado' element={
           <Listado />
         } />

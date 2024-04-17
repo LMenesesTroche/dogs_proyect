@@ -11,7 +11,7 @@ export const Listado = async() => {
     return (
         <div className={styles.container}>
         
-        {response.data? response.data.map((element)=>(
+        {/* {response.data? response.data.map((element)=>(
             <Card 
             key={element.id}
             imagen={element.imagen}
@@ -20,7 +20,7 @@ export const Listado = async() => {
             peso={element.peso}
 
             />
-        )):null}
+        )):null} */}
         </div>
     );
 };
