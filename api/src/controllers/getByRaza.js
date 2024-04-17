@@ -4,7 +4,7 @@ const URL = 'https://api.thedogapi.com/v1/breeds';
 
 //Necesita devolverme los perros que tengan la raza mandada
 async function getByRaza(req,res){
-
+    
     let { raza } = req.params; //sacamos la raza que nos pasan por params
     if(raza === undefined || raza === null){
         res.status(400).json("La raza no esta definida");
@@ -13,11 +13,12 @@ async function getByRaza(req,res){
     const razaEnMinusculas = raza.toLowerCase();
     try{
         let response = await axios.get(`${URL}`);
+        
 
-
-        const arrayDePerros = response.data.map(x => { //mapeamos el objeto que nos devuelvela respuesta
+        const arrayDePerros = response.data.map(async x => { 
             if(x.breed_group && razaEnMinusculas === x.breed_group.toLowerCase()){
                 return{
+                    id:x.id,
                     imagen:x.reference_image_id,
                     nombre: x.name,
                     temperamento:x.temperament,
@@ -25,6 +26,7 @@ async function getByRaza(req,res){
                 }  
             }
         }); 
+
         if(arrayDePerros.length<1){
             res.status(404).json("No se encontro la raza");
         }

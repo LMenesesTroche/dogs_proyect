@@ -3,19 +3,23 @@ const axios = require('axios'); //importamos axios para hacer la peticion get
 const URL = 'https://api.thedogapi.com/v1/breeds';
 
 
-//Necesita devolverme todos los perros de cierta raza
+//Necesita devolverme todos los perros
 async function getDogs(req,res){
 
     try{
         let response = await axios.get(`${URL}`);  //hacemos la request
         
-        const arrayDeRazas = response.data.map(breed => { //mapeamos el objeto que nos devuelvela respuesta
+        const arrayPerros = response.data.map(x => { //mapeamos el objeto que nos devuelvela respuesta
             return {
-              name: breed.breed_group, // Creamos un array por cada raza
+              id: x.id,
+              imagen: x.reference_image_id,
+              nombre: x.name,
+              temperamento: x.temperament,
+              peso: x.weight.metric, // Creamos un array por cada raza
             };
           }); 
 
-        res.status(200).send(arrayDeRazas);
+        res.status(200).send(arrayPerros);
 
 
     }catch(error){

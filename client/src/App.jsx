@@ -7,6 +7,7 @@ import Nav from './components/Nav';
 import Home from './components/home';
 import axios from 'axios'
 import './App.css'
+import Listado from './components/Listado';
 const URL = 'http://localhost:3001/dogs';
 
 //Nombre falso = AffenpinScher
@@ -14,12 +15,13 @@ function App() {
   const dispatch = useDispatch();
 
   const onSearch = async (id) => {
-
+    
     try{
       let response = await  axios(URL + `/raza/${id}`);
-      response.data.forEach(element => {
-        if(element){ //mando un objeto a la vez
-          // console.log(element)
+
+
+      response.data.forEach( async element => {
+        if(element){ //mando un objeto a la vez;
           dispatch(addRaza(element));
         }
       });
@@ -46,6 +48,9 @@ function App() {
 
         <Route path='/home' element={
           <Home />
+        } />
+        <Route path='/listado' element={
+          <Listado />
         } />
 
         

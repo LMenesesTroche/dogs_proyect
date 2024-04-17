@@ -1,5 +1,7 @@
 const axios = require('axios');
 const { dog } = require('../db');
+const temperamentos = require('../models/temperaments');
+const Sequelize  = 'sequelize';
 const URL = 'https://api.thedogapi.com/v1/breeds';
 
 //Necesita devolverme la raza y el temperamento de ese perro
@@ -9,30 +11,21 @@ async function getById(req,res){
 
   try{
     //Pimero verificamos que haya el perro en la DB o en la api
-    const perroDelId = await dog.findOne({ where: { id:id }});
+    const perroDelId = await dog.findOne({ where: { id:id }, includes: temperamentos});
     let response = await axios.get(`${URL}/${id}`);
 
-    if(perroDelId || response.data){
+    if(perroDelId || response){
       if(perroDelId){
-        const { breed_group, temperament } = perroDelId;
-        if(!breed_group||!temperament){
-          res.status(200).json("faltan datos");  
-        }else{
-          res.status(200).json({ breed_group, temperament});  
-        }
-        
+        res.status(200).json(perroDelId);
       }else{
-        const { breed_group, temperament } = response.data;
-        if(!breed_group||!temperament){
-          res.status(200).json("faltan datos");  
-        }else{
-          res.status(200).json({ breed_group, temperament});  
-        }
+        res.status(200).json(response.data);
       }
     }else{
-      res.status(400).json("No hay el perro que buscas");
+      res.status(400).json("No hay datos");
     }
 
+
+    
   }catch(error){
       console.log("error en getById.js");
       res.status(500).send({message:error.message});

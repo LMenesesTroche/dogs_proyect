@@ -6,6 +6,7 @@ const postDogs = require('../controllers/postDogs');
 const getTemperaments = require('../controllers/getTemperaments');
 const getById = require('../controllers/getById');
 const getByRaza = require('../controllers/getByRaza');
+const getImagenes = require('../controllers/getImagenes');
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -16,7 +17,7 @@ const myRouter = express.Router();
 
 myRouter.get('/dogs',getDogs); 
 
-myRouter.get('/dogs/:id',getById); 
+myRouter.get('/dogs/id/:id',getById); 
 
 myRouter.get('/dogs/name/:name',getByName); 
 
@@ -25,6 +26,9 @@ myRouter.post('/dogs',postDogs);
 myRouter.get('/dogs/temperaments',getTemperaments); 
 
 myRouter.get('/dogs/raza/:raza',getByRaza); 
+
+myRouter.get('/dogs/images/:img',getImagenes); 
+
 
 
 

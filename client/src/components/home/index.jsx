@@ -5,7 +5,6 @@ import styles from "./styles.module.css"
 
 export const Home = () => {
   const razas = useSelector(initialState => initialState.misRazas);
-  console.log(razas);
   return (
     <div className={styles.container}>
       

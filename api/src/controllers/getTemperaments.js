@@ -1,5 +1,5 @@
 const axios = require('axios'); 
-const { temperamentos } = require('../db');
+const { temperaments } = require('../db');
 
 const URL = 'https://api.thedogapi.com/v1/breeds';
 
@@ -19,7 +19,7 @@ async function getTemperaments(req,res){
                     let em = {
                         name: y.trim()
                     }
-                    const newTemperament = await temperamentos.findOrCreate({
+                    const newTemperament = await temperaments.findOrCreate({
                         where:{
                             name:em.name
                         }
@@ -30,7 +30,7 @@ async function getTemperaments(req,res){
             }
         });
 
-        const dbTemperamentos = await temperamentos.findAll(); 
+        const dbTemperamentos = await temperaments.findAll(); 
 
         res.status(200).json(dbTemperamentos);
 

@@ -10,7 +10,9 @@ const Nav = ({onSearch}) => {
           <div className={styles.containerOfSearchBar}>
             <SearchBar onSearch={onSearch} />
           </div>
-
+          <Link to="/listado">
+            <button>Listado</button>
+          </Link>
         </div>
     </>
   );
