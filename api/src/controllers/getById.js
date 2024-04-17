@@ -1,5 +1,5 @@
 const axios = require('axios');
-const { dog } = require('../db');
+const { Dogs } = require('../db');
 const temperamentos = require('../models/temperaments');
 const Sequelize  = 'sequelize';
 const URL = 'https://api.thedogapi.com/v1/breeds';
@@ -11,7 +11,7 @@ async function getById(req,res){
 
   try{
     //Pimero verificamos que haya el perro en la DB o en la api
-    const perroDelId = await dog.findOne({ where: { id:id }, includes: temperamentos});
+    const perroDelId = await Dogs.findOne({ where: { id:id }, includes: temperamentos});
     let response = await axios.get(`${URL}/${id}`);
 
     if(perroDelId || response){
