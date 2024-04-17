@@ -5,6 +5,7 @@ const  SearchBar = (props) => {
 
    const { onSearch } =  props;// Nos traemos la funcion que hace la busqueda 
 
+
    const [id, setId] = useState('')
   
    const handleClick = () =>{//(Lo que pasa cuando hacemos click)

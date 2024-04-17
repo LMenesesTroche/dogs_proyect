@@ -9,11 +9,12 @@ const URL = 'https://api.thedogapi.com/v1/breeds';
 //Debe devolver el perro que coincida con el nombre
 async function getByName(req,res){
     try{        
-        const { name } = req.params;//nos mandan por el URL
+        const { name } = req.query;
         const nombreSinMayusculas = name.toLowerCase();  
         
         //Sacamos todos los perros de nuestra database
-        const arrDePerrosEnDb = await dog.findAll({ where: { name: Sequelize.where(Sequelize.fn('LOWER',Sequelize.col('name')),nombreSinMayusculas) }}); 
+        const arrDePerrosEnDb = await dog.findAll({ 
+            where: { name: Sequelize.where(Sequelize.fn('LOWER',Sequelize.col('name')),nombreSinMayusculas) }}); 
         
         if(arrDePerrosEnDb.length > 0){
             return res.status(200).json(arrDePerrosEnDb);

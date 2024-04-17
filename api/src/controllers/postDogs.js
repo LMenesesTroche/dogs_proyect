@@ -1,46 +1,49 @@
-const axios = require('axios'); //importamos axios para hacer la peticion get
-const { dog, temperaments, dogTemperaments } = require('../db');
+const axios = require("axios");
+const { Dogs, Temperaments } = require("../db");
 
-//Debe crear un nuevo perro y relacionarlo con los temperamentos asociandos 
-async function postDogs(req,res){
-    const dogData = req.body;
-    try{        
-        //! POSTEMOS EL PERRO EN DOGS
-        const { img, name, height, weight, years, breed_group, temperament } = req.body; //desestructuramos los datos
 
-        if(!img || !name || !height || !weight|| !years|| !breed_group|| !temperament){ //verificamos que este todo
-            res.status(400).json("Faltan datos");
-        } 
-        
-        const dogPosted = await dog.findOrCreate({ 
-            where:{ img, name, height, weight, years, breed_group, temperament },
-            defaults:{ img, name, height, weight, years, breed_group, temperament } 
+async function postDogs(req, res) {
+    //Desestructuramos lo que nos manden por body
+    const { id, img, name, height, weight, years, temperament ,breed_group } = req.body;
+    try {
+        //Comprobamos que esten todos los datos
+        if (!id || !img || !name || !height|| !weight || !years || !temperament|| !breed_group) {
+            return res.status(402).send({ message: 'Faltan datos' });
+        }
+        //Comprobamos que la imagen no sea rara
+        if (img.length > 250) {
+            return res.status(404).json({ message: "La URL de la imagen es muy larga" });
+        }
+        //Comprobamos que el perro no exista
+        const findDog = await Dogs.findOne({ where: { name } });
+        if (findDog) {
+            return res.status(400).json({ message: 'El nombre del perro ya existe.' });
+        }
+        //Creamnos el perro si no existe
+        const createDog = await Dogs.create({
+            id, img, name, height, weight, years, temperament, breed_group
         });
-        //! Sacamos el id del perro creado
-        const allDogsDb = await dog.findAll();
 
-        let id = null;
+        const temperamentosArray = temperament.split(',').map(t => t.trim());
 
-        const buscarIdDelPerro = allDogsDb.map(async x => { 
-            if(x.name  === name){
-                id = x.id;
+        await Promise.all(temperamentosArray.map(async (temp) => {
+            try {
+                const [temper, created] = await Temperaments.findOrCreate({
+                    where: { name: temp },
+                    defaults: { name: temp }
+                });
+                if (temper) {
+                    await createDog.addTemperaments(temper); // Utiliza el objeto creado para asociar temperamentos
+                }
+            } catch (error) {
+                console.error("Error al guardar el temperamento:", error);
+                res.status(400).send({ message: "Error al guardar el temperamento" });
             }
-        }); 
-        //!Sacamos los temperamentos del perro en un array 
-        const temperamentosSeparados = temperament.split(",");
-        
-        
-        //! HACEMOS LA RELACION DE TEMPERAMENTOS Y PERROS 
-        const temepramentosYPerros = await dogTemperaments.create({ 
-            
-        });
-        
-        res.status(200).json(temperamentosSeparados);
+        }));
 
-    }catch(error){
-        console.log("error en postDogs.js");
-        res.status(500).send({message:error.message});
-
+        return res.status(201).json({ message: "Datos guardados correctamente" });
+    } catch (error) {
+        return res.status(500).json({ message: error.message });
     }
 }
 

@@ -19,7 +19,7 @@ myRouter.get('/dogs',getDogs);
 
 myRouter.get('/dogs/id/:id',getById); 
 
-myRouter.get('/dogs/name/:name',getByName); 
+myRouter.get('/dogs/name/',getByName); 
 
 myRouter.post('/dogs',postDogs); 
 

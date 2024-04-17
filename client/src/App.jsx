@@ -15,23 +15,19 @@ function App() {
   const dispatch = useDispatch();
 
   const onSearch = async (id) => {
-    
     try{
       let response = await  axios(URL + `/raza/${id}`);
-
-
       response.data.forEach( async element => {
         if(element){ //mando un objeto a la vez;
           dispatch(addRaza(element));
         }
       });
-      
+     
     }catch(error){
       console.log(error.message);
-
     }
-      
   }
+
 
   return (
     <div className='App'>
