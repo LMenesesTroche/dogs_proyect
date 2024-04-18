@@ -6,19 +6,19 @@ import styles from "./styles.module.css"
 export const Home = (props) => {
   
 
-  const items = props.item.map((item,index)=>{
-    return <li key={item.id}> {item.nombre}</li>
-  })
+  // const items = props.item.map((item,index)=>{
+  //   return <li key={item.id}> {item.nombre}</li>
+  // })
 
   return (
     <div className={styles.container}>
       <h1>Pagina{props.currentPage}</h1>
       <button  onClick={props.handlePrev}>Prev</button>
       <button onClick={props.handleNext}>next</button>
-      <ul>
+      {/* <ul>
         {items}
-      </ul>
-      {/* {razas? razas.map((element)=>(
+      </ul> */}
+      {props.item? props.item.map((element)=>(
         <Card 
         key={element.id}
         imagen={element.imagen}
@@ -27,7 +27,7 @@ export const Home = (props) => {
         temperamento={element.temperamento}
 
         />
-      )):null} */}
+      )):null}
     </div>
   );
 };
