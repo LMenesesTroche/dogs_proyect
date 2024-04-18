@@ -3,11 +3,22 @@ import Card from "../Razas";
 import styles from "./styles.module.css"
 
 
-export const Home = () => {
-  const razas = useSelector(initialState => initialState.misRazas);
+export const Home = (props) => {
+  
+
+  const items = props.item.map((item,index)=>{
+    return <li key={item.id}> {item.nombre}</li>
+  })
+
   return (
     <div className={styles.container}>
-      {razas? razas.map((element)=>(
+      <h1>Pagina{props.currentPage}</h1>
+      <button  onClick={props.handlePrev}>Prev</button>
+      <button onClick={props.handleNext}>next</button>
+      <ul>
+        {items}
+      </ul>
+      {/* {razas? razas.map((element)=>(
         <Card 
         key={element.id}
         imagen={element.imagen}
@@ -16,7 +27,7 @@ export const Home = () => {
         temperamento={element.temperamento}
 
         />
-      )):null}
+      )):null} */}
     </div>
   );
 };

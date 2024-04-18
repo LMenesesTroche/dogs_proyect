@@ -4,11 +4,12 @@ const { Sequelize } = require('sequelize');
 const URL = 'https://api.thedogapi.com/v1/breeds';
 
 // const name = "AffenpinScher";//Nombre de prueba
-
+//! Asi  se manda 
+// localhost:3001/dogs/name?name=AffenpinScher 
 //Debe devolver el perro que coincida con el nombre
 async function getByName(req,res){
     try{        
-        const { name } = req.params;
+        const { name } = req.query;
         const nombreSinMayusculas = name.toLowerCase();  
         
         //Sacamos todos los perros de nuestra database
