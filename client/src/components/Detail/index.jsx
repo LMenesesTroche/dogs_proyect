@@ -10,7 +10,6 @@ export default function Detail(){
     const { id } = useParams();
     const [character, setCharacter] = useState({});
     
-    
     useEffect(() => {
         axios(URL + `/id/${id}`).then(({ data }) => {
             if (data.name) {
@@ -25,9 +24,6 @@ export default function Detail(){
         return setCharacter({});
      }, [id]);
 
-    
-
-   
     return(
         <div className='containerOfDetails'>
             <div  >

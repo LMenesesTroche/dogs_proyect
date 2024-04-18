@@ -48,21 +48,7 @@ function App() {
     setCurrentPage(prevPage);
   }
 
-  const getDogs = async () => {
-    const  imagenURL = "https://api.thedogapi.com/v1/images"
-    try{
-      let response = await  axios(URL);
-      response.data.forEach( async element => {
-        if(element){ //mando un objeto a la vez;
-          let imagenReal = await  axios(imagenURL +`/${element.imagen}`);
-          element.imagen = imagenReal.data.url;
-          dispatch(addRaza(element));
-        }
-      });
-    }catch(error){
-      console.log(error.message);
-    }
-  }
+  
 
   const onSearch = async (id) => {
     try{
@@ -77,11 +63,27 @@ function App() {
     }
   }
 
+  const getDogs = async () => {
+    const  imagenURL = "https://api.thedogapi.com/v1/images"
+    let response = await  axios(URL);
+    try{
+      response.data.forEach( async element => {
+        if(element){ //mando un objeto a la vez;
+          let imagenReal = await  axios(imagenURL +`/${element.imagen}`);
+          element.imagen = imagenReal.data.url;
+          dispatch(addRaza(element));
+        }
+      });
+    }catch(error){
+      console.log(error.message);
+    }
+  }
+
   return (
     <div className='App'>
           { 
             location.pathname !== '/' ?
-            <Nav onSearch={onSearch}  /> :
+            <Nav onSearch={onSearch} getDogs={getDogs} /> :
             undefined
           }
       <Routes>
