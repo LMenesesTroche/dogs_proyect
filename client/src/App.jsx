@@ -6,10 +6,10 @@ import { addRaza } from './redux/actions';
 import Nav from './components/Nav';
 import Home from './components/home';
 import Detail from './components/Detail';
-
 import axios from 'axios'
 import './App.css'
 import { useSelector } from "react-redux";
+import Form from './components/Form';
 
 const URL = 'http://localhost:3001/dogs';
 
@@ -100,6 +100,10 @@ function App() {
 
         <Route path='/detail/:id' element={
           <Detail/>
+        } />
+        
+        <Route path='/form/' element={
+          <Form/>
         } />
         
 

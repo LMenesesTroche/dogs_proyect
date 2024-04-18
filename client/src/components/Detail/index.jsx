@@ -23,7 +23,6 @@ export default function Detail(){
         });
         return setDog({});
      }, [id]);
-     console.log(dog)
     return(
         <div className='containerOfDetails'>
             <div  >

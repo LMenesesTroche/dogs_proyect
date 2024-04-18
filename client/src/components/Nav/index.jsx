@@ -15,6 +15,9 @@ const Nav = ({onSearch, getDogs}) => {
           <Link to={`/home`}>
             <button onClick={handleClick}>home</button>
          </Link>
+         <Link to={`/form`}>
+            <button >form</button>
+         </Link>
           
         </div>
     </>
