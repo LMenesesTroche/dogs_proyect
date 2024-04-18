@@ -5,6 +5,8 @@ import { useDispatch } from 'react-redux';
 import { addRaza } from './redux/actions';
 import Nav from './components/Nav';
 import Home from './components/home';
+import Detail from './components/Detail';
+
 import axios from 'axios'
 import './App.css'
 import { useSelector } from "react-redux";
@@ -50,17 +52,13 @@ function App() {
     const  imagenURL = "https://api.thedogapi.com/v1/images"
     try{
       let response = await  axios(URL);
-      
       response.data.forEach( async element => {
         if(element){ //mando un objeto a la vez;
-
           let imagenReal = await  axios(imagenURL +`/${element.imagen}`);
           element.imagen = imagenReal.data.url;
-          // console.log(element)
           dispatch(addRaza(element));
         }
       });
-     
     }catch(error){
       console.log(error.message);
     }
@@ -98,6 +96,9 @@ function App() {
           <Home  item={items} handlePrev={handlePrev} handleNext={handleNext} currentPage={currentPage}/>
         } />
 
+        <Route path='/detail/:id' element={
+          <Detail/>
+        } />
         
 
       </Routes>
