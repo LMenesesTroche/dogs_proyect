@@ -8,33 +8,36 @@ const  imagenURL = "https://api.thedogapi.com/v1/images/"
 export default function Detail(){
     
     const { id } = useParams();
-    const [character, setCharacter] = useState({});
+    const [dog, setDog] = useState({});
     
     useEffect(() => {
         axios(URL + `/id/${id}`).then(({ data }) => {
             if (data.name) {
                 axios(imagenURL+`${data.reference_image_id}`).then(response => {
-                    setCharacter({ ...data, image: response.data.url }); 
+                    setDog({ ...data, image: response.data.url }); 
                 })
-                setCharacter(data);
+                setDog(data);
            } else {
               window.alert('No hay perros');
            }
         });
-        return setCharacter({});
+        return setDog({});
      }, [id]);
-
+     console.log(dog)
     return(
         <div className='containerOfDetails'>
             <div  >
-                <h2>Name|{character.name}</h2>
-                <h2>breed_group| {character.breed_group}</h2>
-                <h2>temperament| {character.temperament}</h2>
-                <h2>origin| {character.origin}</h2>
+                <h2>ID| {dog.id}</h2>
+                <h2>Name|{dog.name}</h2>
+                <h2>Height| {dog.height ? dog.height.metric : 'Unknown'}</h2>
+                <h2>Weight| {dog.weight ? dog.weight.metric : 'Unknown'}</h2>
+                <h2>temperament| {dog.temperament}</h2>
+                <h2>Life Span| {dog.life_span}</h2>
+
                 
             </div>
            <div className='image'>
-               <img src={character.image} alt="Imagen del perro" height={150} width={150}/>           
+               <img src={dog.image} alt="Imagen del perro" height={150} width={150}/>           
            </div>
         </div>
 
