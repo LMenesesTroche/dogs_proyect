@@ -4,7 +4,7 @@ export default function Card({ imagen, nombre, peso, temperamento }) {
 
    return (
       <div className={styles.container}>
-        <img src={imagen}></img>
+        <img className={styles.img} src={imagen}></img>
         <h2 >{nombre}</h2>
         <h2 >{peso}</h2>
         <h2 >{temperamento}</h2>

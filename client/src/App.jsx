@@ -47,10 +47,16 @@ function App() {
   }
 
   const getDogs = async () => {
+    const  imagenURL = "https://api.thedogapi.com/v1/images"
     try{
       let response = await  axios(URL);
+      
       response.data.forEach( async element => {
         if(element){ //mando un objeto a la vez;
+
+          let imagenReal = await  axios(imagenURL +`/${element.imagen}`);
+          element.imagen = imagenReal.data.url;
+          // console.log(element)
           dispatch(addRaza(element));
         }
       });
