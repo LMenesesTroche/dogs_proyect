@@ -74,9 +74,16 @@ function App() {
           dispatch(addRaza(element));
         }
       });
-    }catch(error){
+    }catch(error){ 
       console.log(error.message);
     }
+  }
+
+  const postDog = async ({ dogData }) => {
+    console.log(dogData)
+    // axios.post(URL,{
+    //   props
+    // })
   }
 
   return (
@@ -103,7 +110,7 @@ function App() {
         } />
         
         <Route path='/form/' element={
-          <Form/>
+          <Form postDog={postDog}/>
         } />
         
 

@@ -5,12 +5,13 @@ import style from './styles.module.css';
 
 const URL = 'http://localhost:3001/dogs';
 
-export default function Form(){
+export default function Form({ postDog }){
     const [dogData, setUserData] = useState({
         name: '',
         height: '',
         weight: '',
         years: '',
+        temperament:''
     });
 
     const [errors, setErrors] = useState({
@@ -18,16 +19,17 @@ export default function Form(){
         height: '',
         weight: '',
         years: '',
+        temperament:''
         
     });
     //Lo que pasa despues de  oprimir submit
     const handlerSubmit = (event) =>{
         event.preventDefault();
-        if(errors.name||errors.height||errors.weight||errors.years){
+        if(errors.name||errors.height||errors.weight||errors.years||errors.temperament){
             alert("Form has errors")
         }else{
-            console.log(dogData)
-            // postDog(userData);
+            // console.log(dogData)
+            postDog(dogData);
             alert("Form submmited succesfully")
         }
     }
@@ -89,6 +91,14 @@ export default function Form(){
                 onChange={handleChange}
                 />
 
+                <label>Temperament</label>
+                {errors.temperament && <span className={style.warning}>{errors.temperament}</span>}
+                <input 
+                type='text' 
+                name='temperament'
+                value={dogData.temperament}
+                onChange={handleChange}
+                />
 
                 <button type='submit' >Submit</button>
             </form>
