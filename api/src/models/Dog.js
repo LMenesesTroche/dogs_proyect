@@ -1,44 +1,41 @@
 const { DataTypes } = require('sequelize');
-const { toDefaultValue } = require('sequelize/lib/utils');
+const { v4: uuidv4 } = require('uuid');
 
-// Exportamos una funcion que define el modelo
-// Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
-  // defino el modelo
-  sequelize.define('Dogs', {
-    id:{
-      type: DataTypes.INTEGER,
+  sequelize.define('Dog', {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: () => uuidv4(), // Genera un UUID automáticamente al crear un nuevo registro
       primaryKey: true,
-      unique: true,
-      allowNull: false,
-    },
-    img:{
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    height:{
+    height: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    weight:{
+    weight: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    years:{
+    years: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    breed_group:{
+    breed_group: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    temperament:{
+    temperament: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-  },{timestamps: false});
+  }, { timestamps: false });
+
+  // Gancho para generar el UUID antes de crear un nuevo registro
+  sequelize.models.Dog.beforeCreate((dog, options) => {
+    dog.id = uuidv4(); // Asigna un UUID generado automáticamente al campo 'id'
+  });
 };

@@ -1,25 +1,63 @@
 export default function validation(inputs){
     const errors = {};
-    const regexpassword =  /^(?=\w*\d)\S{6,10}$/;
-    const regexnumber =  /^(?:[0-9]+[a-z]|[a-z]+[0-9])[a-z0-9]*$/i
+    var numeros = "0123456789";
+    var letras = "abcdefghyjklmnñopqrstuvwxyz";
 
-    
-    if (!inputs.name) {
-        errors.name = 'El usuario no puede estar vacio'
+        // Validacion nombre
+        //IndexOf devuelve la poscicion en el array de lo que le mandes
+    for (let i=0; i < inputs.name.length; i++){
+        if (numeros.indexOf( inputs.name.charAt(i),0) !=-1){
+            errors.name = 'Cant have numbers'
+        }
     }
-    //Diferenciar entre la altura maxima y minima
+    if(inputs.name.length > 15){
+        errors.name = 'The name is too long'
+    }
+    if (!inputs.name) {
+        errors.name = '*'
+    }
+
+    //Validacion altura
+    for (let i=0; i < inputs.height.length; i++){
+        if (letras.indexOf( inputs.height.charAt(i),0) !=-1){
+            errors.height = 'Cant have leters'
+        }
+    }
     if(inputs.height > 100){
         errors.height = 'Too high'
     }
     if(inputs.height < 10){
         errors.height = 'Too short'
     }
-    // //validacion del password
-    // if (!regexnumber.test(inputs.password)) {
-    //     errors.password = "La contrasena debe tener un numero"
-    // }
-    // if (!regexpassword.test(inputs.password)) {
-    //     errors.password = "Debe tener entre 6 y 10 caracteres"
-    // }
+    if(!inputs.height){
+        errors.height = '*'
+    }
+
+    //Validacion peso
+    for (let i=0; i < inputs.weight.length; i++){
+        if (letras.indexOf( inputs.weight.charAt(i),0) !=-1){
+            errors.weight = 'Cant have leters'
+        }
+    }
+    if(inputs.weight > 90){
+        errors.weight = 'Too heavy'
+    }
+    if(!inputs.weight){
+        errors.weight = '*'
+    }
+
+    //Validacion años de Vida
+    for (let i=0; i < inputs.years.length; i++){
+        if (letras.indexOf( inputs.years.charAt(i),0) !=-1){
+            errors.years = 'Cant have leters'
+        }
+    }
+    if(inputs.years > 20){
+        errors.years = 'Too old'
+    }
+    if(!inputs.years){
+        errors.years = '*'
+    }
+
     return errors;
 }

@@ -1,27 +1,27 @@
 const axios = require("axios");
-const { Dogs, Temperaments } = require("../db");
+const { Dog, Temperaments } = require("../db");
 
 
 async function postDogs(req, res) {
     //Desestructuramos lo que nos manden por body
-    const { id, img, name, height, weight, years, temperament ,breed_group } = req.body;
+    const {  name, height, weight, years, temperament ,breed_group } = req.body;
     try {
         //Comprobamos que esten todos los datos
-        if (!id || !img || !name || !height|| !weight || !years || !temperament|| !breed_group) {
+        if ( !name || !height|| !weight || !years || !temperament|| !breed_group) {
             return res.status(402).send({ message: 'Faltan datos' });
         }
         //Comprobamos que la imagen no sea rara
-        if (img.length > 250) {
-            return res.status(404).json({ message: "La URL de la imagen es muy larga" });
-        }
+        // if (img.length > 250) {
+        //     return res.status(404).json({ message: "La URL de la imagen es muy larga" });
+        // }
         //Comprobamos que el perro no exista
-        const findDog = await Dogs.findOne({ where: { name } });
+        const findDog = await Dog.findOne({ where: { name } });
         if (findDog) {
             return res.status(400).json({ message: 'El nombre del perro ya existe.' });
         }
         //Creamnos el perro si no existe
-        const createDog = await Dogs.create({
-            id, img, name, height, weight, years, temperament, breed_group
+        const createDog = await Dog.create({
+             name, height, weight, years, temperament, breed_group
         });
 
         const temperamentosArray = temperament.split(',').map(t => t.trim());
