@@ -14,7 +14,8 @@ async function postDogs(req, res) {
         // if (img.length > 250) {
         //     return res.status(404).json({ message: "La URL de la imagen es muy larga" });
         // }
-        //Comprobamos que el perro no exista
+
+        //Comprobamos que el nombre del perro no este ocupado
         const findDog = await Dog.findOne({ where: { name } });
         if (findDog) {
             return res.status(400).json({ message: 'El nombre del perro ya existe.' });
@@ -28,12 +29,13 @@ async function postDogs(req, res) {
 
         await Promise.all(temperamentosArray.map(async (temp) => {
             try {
+                //Creamos el temperamento que le ponen al perro si es que no existen ya
                 const [temper, created] = await Temperaments.findOrCreate({
                     where: { name: temp },
                     defaults: { name: temp }
                 });
                 if (temper) {
-                    await createDog.addTemperaments(temper); // Utiliza el objeto creado para asociar temperamentos
+                    await createDog.addTemperaments(temper); 
                 }
             } catch (error) {
                 console.error("Error al guardar el temperamento:", error);

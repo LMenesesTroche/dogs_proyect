@@ -24,14 +24,10 @@ async function getTemperaments(req,res){
                             name:em.name
                         }
                     });
-
                 })
-
             }
         });
-
         const dbTemperamentos = await Temperaments.findAll(); 
-
         res.status(200).json(dbTemperamentos);
 
     }catch(error){

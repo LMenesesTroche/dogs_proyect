@@ -59,14 +59,7 @@ export default function validation(inputs){
         errors.years = '*'
     }
     //Validacion años de Vida
-    for (let i=0; i < inputs.temperament.length; i++){
-        if (numeros.indexOf( inputs.temperament.charAt(i),0) !=-1){
-            errors.temperament = 'Cant have numbers'
-        }
-    }
-    if(!inputs.temperament){
-        errors.temperament = '*'
-    }
+    
 
     return errors;
 }

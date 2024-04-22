@@ -1,7 +1,8 @@
-import { ADD_RAZA } from "./actions";
+import { ADD_RAZA, ADD_TEMPERAMENT } from "./actions";
 
 const initialState = {
-    misRazas:[]
+    misRazas:[],
+    misTemperamentos:[],
 }
 
 const rootReducer = (state = initialState, {type, payload}) =>{
@@ -10,6 +11,11 @@ const rootReducer = (state = initialState, {type, payload}) =>{
             return{
                 ...state,
                 misRazas:[...state.misRazas,payload]
+            }
+        case ADD_TEMPERAMENT:
+            return{
+                ...state,
+                misTemperamentos:[...state.misTemperamentos,payload]
             }
         default:
             return{...state};

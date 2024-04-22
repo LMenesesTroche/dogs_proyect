@@ -2,16 +2,23 @@ import React, {useEffect, useState } from 'react';
 import styles from './styles.module.css' 
 import validation from './validations';  
 import style from './styles.module.css';
+import { useSelector } from "react-redux";
 
 const URL = 'http://localhost:3001/dogs';
 
-export default function Form({ postDog }){
+export default function Form({ postDog, getTemperaments}){
+    useEffect(()=>{
+        getTemperaments();
+    },[])
+    const misTemperamentos = useSelector(state => state.misTemperamentos );
+    console.log(misTemperamentos)
+    
     const [dogData, setUserData] = useState({
         name: '',
         height: '',
         weight: '',
         years: '',
-        temperament:''
+        temperament:[],
     });
 
     const [errors, setErrors] = useState({
@@ -19,7 +26,6 @@ export default function Form({ postDog }){
         height: '',
         weight: '',
         years: '',
-        temperament:''
         
     });
     //Lo que pasa despues de  oprimir submit
@@ -28,24 +34,35 @@ export default function Form({ postDog }){
         if(errors.name||errors.height||errors.weight||errors.years||errors.temperament){
             alert("Form has errors")
         }else{
-            // console.log(dogData)
-            postDog(dogData);
+            console.log(dogData)
+            // postDog(dogData);
             alert("Form submmited succesfully")
         }
     }
     //Esto esta pasando mientras se va escribiendo en el form
     const handleChange = (e) => {
-        setUserData({
-          ...dogData,
-          [e.target.name]: e.target.value
-        });
+        const { name, value } = e.target;
+        if(name === 'temperament'){
+            const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
+            setUserData(prevState => ({
+                ...prevState,
+                [name]:selectedOptions
+            }));
+        }else{
+            setUserData(prevState => ({
+                ...prevState,
+                [name]:value
+            }));
+        }
 
         setErrors(validation({
           ...dogData,
-          [e.target.name]: e.target.value
+          [name]: value
         }));
     };
 
+
+    
     return(
         <div className={styles.container} onSubmit={handlerSubmit}>
             <label> (*) Means it cannot be empty</label>
@@ -92,13 +109,14 @@ export default function Form({ postDog }){
                 />
 
                 <label>Temperament</label>
-                {errors.temperament && <span className={style.warning}>{errors.temperament}</span>}
-                <input 
-                type='text' 
-                name='temperament'
-                value={dogData.temperament}
-                onChange={handleChange}
-                />
+                <select multiple onChange={handleChange} name='temperament'>
+                    <option value="Loco">Loco</option>
+                    <option value="Agresivo">Agresivo</option>
+                    {/* Selected es la predeterminada */}
+                    <option value="Feliz">Feliz</option>
+                </select>    
+            
+
 
                 <button type='submit' >Submit</button>
             </form>

@@ -1,5 +1,5 @@
 const axios = require('axios'); //importamos axios para hacer la peticion get
-const { Dogs } = require('../db.js');
+const { Dog } = require('../db.js');
 const { Sequelize } = require('sequelize');
 const URL = 'https://api.thedogapi.com/v1/breeds';
 
@@ -11,9 +11,9 @@ async function getByName(req,res){
     try{        
         const { name } = req.query;
         const nombreSinMayusculas = name.toLowerCase();  
-        
+        const arrDePerros = [];
         //Sacamos todos los perros de nuestra database
-        const arrDePerrosEnDb = await Dogs.findAll({ 
+        const arrDePerrosEnDb = await Dog.findAll({ 
             where: { name: Sequelize.where(Sequelize.fn('LOWER',Sequelize.col('name')),nombreSinMayusculas) }}); 
         
         if(arrDePerrosEnDb.length > 0){

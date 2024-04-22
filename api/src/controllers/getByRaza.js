@@ -9,26 +9,12 @@ async function getByRaza(req,res){
     
     if(raza === undefined || raza === null){
         res.status(400).json("La raza no esta definida");
-        
     }
+    //convertimos la raza a minusculas
     const razaEnMinusculas = raza.toLowerCase();
     try{
         let response = await axios.get(`${URL}`);
-
-        // const lol = response.data.forEach(function(x){
-        //     if(x.breed_group === raza){
-        //         return{
-        //             id:x.id,
-        //             imagen:x.reference_image_id,
-        //             nombre: x.name,
-        //             temperamento:x.temperament,
-        //             peso:x.weight.imperial
-        //         }  
-        //     }
-
-        // })
-        // res.status(200).json(lol);
-
+        //mapeamos el array de perros y filtramos por raza
         let arrayDePerros = response.data.map( x => { 
             if(x.breed_group && razaEnMinusculas === x.breed_group.toLowerCase()){
                 return{

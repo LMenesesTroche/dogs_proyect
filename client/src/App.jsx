@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Login from './components/Login'
 import { Route, Routes, useLocation ,useNavigate} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addRaza } from './redux/actions';
+import { addRaza, addTemperament } from './redux/actions';
 import Nav from './components/Nav';
 import Home from './components/home';
 import Detail from './components/Detail';
@@ -13,17 +13,15 @@ import Form from './components/Form';
 
 const URL = 'http://localhost:3001/dogs';
 
-
-const DATOS_API = Array.from({ length:  60},(value,index)=>{
-  return {id:index, nombre:`Item#${index}`}
-})
-
+// const DATOS_API = Array.from({ length:  60},(value,index)=>{
+//   return {id:index, nombre:`Item#${index}`}
+// })
 const itemsPorPagina = 8;
 
 //Nombre falso = AffenpinScher
 function App() {
   const dispatch = useDispatch();
-
+  
   const misRazas = useSelector(state => state.misRazas );
 
   //Items son los datos recortados que se mostraran en la pantalla
@@ -85,6 +83,17 @@ function App() {
     //   props
     // })
   }
+  const getTemperaments = async () => {
+    try{
+      let response = await  axios(URL + `/temperaments`);
+      response.data.forEach( element => {
+          dispatch(addTemperament(element.name));
+      });
+    }catch(error){
+      console.log(error.message);
+    }
+  }
+  
 
   return (
     <div className='App'>
@@ -110,7 +119,7 @@ function App() {
         } />
         
         <Route path='/form/' element={
-          <Form postDog={postDog}/>
+          <Form postDog={postDog} getTemperaments={getTemperaments}/>
         } />
         
 

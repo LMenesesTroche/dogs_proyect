@@ -8,7 +8,6 @@ export const Home =  (props) => {
   return (
     
     <div className={styles.container}>
-      hola
       <h1>Page{props.currentPage}</h1>
       <button  onClick={props.handlePrev}>Prev</button>
       <button onClick={props.handleNext}>next</button>
