@@ -12,7 +12,7 @@ export default function Form({ postDog, getTemperaments}){
         getTemperaments();
     },[])
     const misTemperamentos = useSelector(state => state.misTemperamentos );
-    console.log(misTemperamentos)
+    // console.log(misTemperamentos)
     
     const [dogData, setUserData] = useState({
         name: '',
@@ -111,14 +111,11 @@ export default function Form({ postDog, getTemperaments}){
 
                 <label>Temperament</label>
                 <select multiple onChange={handleChange} name='temperament'>
-                    <option value="Loco">Loco</option>
-                    <option value="Agresivo">Agresivo</option>
-                    {/* Selected es la predeterminada */}
-                    <option value="Feliz">Feliz</option>
+                    {misTemperamentos? misTemperamentos.map((element,index)=>(
+                        <option key={index} value={element}>{element}</option>
+                    )):null}        
                 </select>    
             
-
-
                 <button type='submit' >Submit</button>
             </form>
         </div>

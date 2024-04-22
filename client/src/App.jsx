@@ -10,17 +10,12 @@ import './App.css'
 import { useSelector } from "react-redux";
 import Form from './components/Form';
 import { useDispatch } from 'react-redux';
-
-
 const URL = 'http://localhost:3001/dogs';
-
-// const DATOS_API = Array.from({ length:  60},(value,index)=>{
-//   return {id:index, nombre:`Item#${index}`}
-// })
 
 //Nombre falso = AffenpinScher
 function App() {
   const dispatch = useDispatch();
+  const location = useLocation(); // Obtener la ubicación actual del enrutador
 
   const onSearch = async (id) => {
     try{
