@@ -14,7 +14,7 @@ async function postDogs(req, res) {
         //Comprobamos que el nombre del perro no este ocupado
         const findDog = await Dog.findOne({ where: { name } });
         if (findDog) {
-            return res.status(400).json({ message: 'El nombre del perro ya existe.' });
+            return res.status(200).json({ message: "El nombre del perro ya existe"});
         }
 
         //Creamnos el perro si no existe

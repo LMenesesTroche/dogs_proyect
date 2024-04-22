@@ -49,7 +49,8 @@ function App() {
   const postDog = async (props) => {
     try{
       let response = await axios.post(URL, props);
-      window.alert("The dog was created succesfully!")
+      
+      window.alert(response.data.message)
     }catch(error){
       console.error('Error al enviar los datos:', error);
     }

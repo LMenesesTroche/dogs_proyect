@@ -29,12 +29,12 @@ export default function Form({ postDog, getTemperaments}){
         weight: '',
         years: '',
         breed_group:'',
-        
+        temperament:[],
     });
     //Lo que pasa despues de  oprimir submit
     const handlerSubmit = (event) =>{
         event.preventDefault();
-        if(errors.name||errors.height||errors.weight||errors.years||errors.temperament){
+        if(errors.name||errors.height||errors.weight||errors.years||errors.temperament||errors.breed_group){
             alert("Form has errors")
         }else{
             postDog(dogData);
@@ -119,6 +119,7 @@ export default function Form({ postDog, getTemperaments}){
                 />
 
                 <label>Temperament</label>
+                {errors.temperament && <span className={style.warning}>{errors.temperament}</span>}
                 <select multiple onChange={handleChange} name='temperament'>
                     {misTemperamentos? misTemperamentos.map((element,index)=>(
                         <option key={index} value={element}>{element}</option>
