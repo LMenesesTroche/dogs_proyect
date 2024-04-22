@@ -58,8 +58,18 @@ export default function validation(inputs){
     if(!inputs.years){
         errors.years = '*'
     }
-    //Validacion años de Vida
-    
+    //Validacion breed_groups
+    for (let i=0; i < inputs.breed_group.length; i++){
+        if (numeros.indexOf( inputs.breed_group.charAt(i),0) !=-1){
+            errors.breed_group = 'Cant have numbers'
+        }
+    }
+    if(inputs.breed_group.length > 15){
+        errors.breed_group = 'The breed is too long'
+    }
+    if(!inputs.breed_group){
+        errors.breed_group = '*'
+    }
 
     return errors;
 }

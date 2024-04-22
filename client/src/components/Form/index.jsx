@@ -19,6 +19,7 @@ export default function Form({ postDog, getTemperaments}){
         height: '',
         weight: '',
         years: '',
+        breed_group: '',
         temperament:[],
     });
 
@@ -27,6 +28,7 @@ export default function Form({ postDog, getTemperaments}){
         height: '',
         weight: '',
         years: '',
+        breed_group:'',
         
     });
     //Lo que pasa despues de  oprimir submit
@@ -35,9 +37,7 @@ export default function Form({ postDog, getTemperaments}){
         if(errors.name||errors.height||errors.weight||errors.years||errors.temperament){
             alert("Form has errors")
         }else{
-            console.log(dogData)
-            // postDog(dogData);
-            alert("Form submmited succesfully")
+            postDog(dogData);
         }
     }
     //Esto esta pasando mientras se va escribiendo en el form
@@ -106,6 +106,15 @@ export default function Form({ postDog, getTemperaments}){
                 type='text' 
                 name='years'
                 value={dogData.years}
+                onChange={handleChange}
+                />
+
+                <label>Breed Group</label>
+                {errors.breed_group && <span className={style.warning}>{errors.breed_group}</span>}
+                <input 
+                type='text' 
+                name='breed_group'
+                value={dogData.breed_group}
                 onChange={handleChange}
                 />
 

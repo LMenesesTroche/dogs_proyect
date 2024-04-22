@@ -10,24 +10,21 @@ async function postDogs(req, res) {
         if ( !name || !height|| !weight || !years || !temperament|| !breed_group) {
             return res.status(402).send({ message: 'Faltan datos' });
         }
-        //Comprobamos que la imagen no sea rara
-        // if (img.length > 250) {
-        //     return res.status(404).json({ message: "La URL de la imagen es muy larga" });
-        // }
 
         //Comprobamos que el nombre del perro no este ocupado
         const findDog = await Dog.findOne({ where: { name } });
         if (findDog) {
             return res.status(400).json({ message: 'El nombre del perro ya existe.' });
         }
+
         //Creamnos el perro si no existe
         const createDog = await Dog.create({
              name, height, weight, years, temperament, breed_group
         });
 
-        const temperamentosArray = temperament.split(',').map(t => t.trim());
+        // // const temperamentosArray = temperament.split(',').map(t => t.trim());
 
-        await Promise.all(temperamentosArray.map(async (temp) => {
+        await Promise.all(temperament.map(async (temp) => {
             try {
                 //Creamos el temperamento que le ponen al perro si es que no existen ya
                 const [temper, created] = await Temperaments.findOrCreate({
