@@ -11,7 +11,7 @@ async function getById(req,res){
 
   try{
     let response = await axios.get(`${URL}`);
-    const perroExterno = response.data.find(perro => perro.id === id);
+    const perroExterno = response.data.find((perro) => perro.id == id);
     if(perroExterno){
       res.status(200).json(perroExterno);
     }else{

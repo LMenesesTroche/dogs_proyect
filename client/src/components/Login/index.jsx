@@ -1,14 +1,12 @@
 import {Link} from 'react-router-dom'
 
 
-export const Login = ({ getDogs }) => {
-  const handleClick = () => {
-    getDogs();
-  }
+export const Login = () => {
+  
   return (
     <div>
         <Link to="/home">
-            <button onClick={handleClick}>Home</button>
+            <button >Home</button>
         </Link>
     </div>
   );

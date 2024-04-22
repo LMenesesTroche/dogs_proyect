@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Login from './components/Login'
 import { Route, Routes, useLocation ,useNavigate} from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { addRaza, addTemperament } from './redux/actions';
 import Nav from './components/Nav';
 import Home from './components/home';
@@ -10,43 +9,18 @@ import axios from 'axios'
 import './App.css'
 import { useSelector } from "react-redux";
 import Form from './components/Form';
+import { useDispatch } from 'react-redux';
+
 
 const URL = 'http://localhost:3001/dogs';
 
 // const DATOS_API = Array.from({ length:  60},(value,index)=>{
 //   return {id:index, nombre:`Item#${index}`}
 // })
-const itemsPorPagina = 8;
 
 //Nombre falso = AffenpinScher
 function App() {
   const dispatch = useDispatch();
-  
-  const misRazas = useSelector(state => state.misRazas );
-
-  //Items son los datos recortados que se mostraran en la pantalla
-  const [items, setItems] = useState([...misRazas].splice(0, itemsPorPagina));
-  //Esta es la pagina actual en la que estamos
-  const [currentPage, setCurrentPage ] = useState(0)
-
-  const handleNext = () =>{
-    const totalDeElementos = misRazas.length;
-    const nextPage = currentPage + 1;
-    const firstIndex = nextPage * itemsPorPagina;
-    if( firstIndex >= totalDeElementos ) return;
-    setItems([...misRazas].splice(firstIndex, itemsPorPagina))
-    setCurrentPage(nextPage);
-  }
-
-  const handlePrev = () =>{
-    const prevPage = currentPage -1;
-    if(prevPage < 0) return;
-    const firstIndex  = prevPage * itemsPorPagina;
-    setItems([...misRazas].splice(firstIndex, itemsPorPagina))
-    setCurrentPage(prevPage);
-  }
-
-  
 
   const onSearch = async (id) => {
     try{
@@ -83,6 +57,7 @@ function App() {
     //   props
     // })
   }
+
   const getTemperaments = async () => {
     try{
       let response = await  axios(URL + `/temperaments`);
@@ -99,19 +74,19 @@ function App() {
     <div className='App'>
           { 
             location.pathname !== '/' ?
-            <Nav onSearch={onSearch} getDogs={getDogs} /> :
+            <Nav onSearch={onSearch}  /> :
             undefined
           }
       <Routes>
 
         {/* LOGIN */}
         <Route path='/' element={
-          <Login getDogs={getDogs}/>
+          <Login />
         } />
 
         {/* Home */}
         <Route path='/home' element={
-          <Home  item={items} handlePrev={handlePrev} handleNext={handleNext} currentPage={currentPage}/>
+          <Home getDogs={getDogs}/>
         } />
 
         <Route path='/detail/:id' element={

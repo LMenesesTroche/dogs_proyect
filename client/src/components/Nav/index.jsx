@@ -2,10 +2,7 @@ import React from "react";
 import SearchBar from "../SearchBar/index";
 import {Link} from 'react-router-dom'
 import styles from './styles.module.css'
-const Nav = ({onSearch, getDogs}) => {
-  const handleClick = () => {
-    getDogs();
-  }
+const Nav = ({  onSearch }) => {
   return (
     <>
         <div className={styles.container}>
@@ -13,7 +10,8 @@ const Nav = ({onSearch, getDogs}) => {
             <SearchBar onSearch={onSearch} />
           </div>
           <Link to={`/home`}>
-            <button onClick={handleClick}>home</button>
+            <button 
+            >home</button>
          </Link>
          <Link to={`/form`}>
             <button >form</button>
