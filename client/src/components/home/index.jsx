@@ -8,19 +8,25 @@ const URL = 'http://localhost:3001/dogs';
 const itemsPorPagina = 8;
 
 
-export const Home =  ({ getDogs}) => {
-  const dispatch = useDispatch();
-  //Traemos los perros al front
-  useEffect(()=>{
-    getDogs();
-  },[])
+export const Home =  ({ getDogs }) => {
+  //Traemos a las razas de mi reducer
   const misRazas = useSelector(state => state.misRazas );
-
   //Items son los datos recortados que se mostraran en la pantalla
   const [items, setItems] = useState([...misRazas].splice(0, itemsPorPagina));
   //Esta es la pagina actual en la que estamos
   const [currentPage, setCurrentPage ] = useState(0)
 
+  //Traemos los perros al front
+  useEffect(()=>{
+    getDogs();
+  },[])
+
+    // Actualizamos los items cuando misRazas cambien
+    useEffect(() => {
+    setItems([...misRazas].splice(currentPage * itemsPorPagina, itemsPorPagina));
+  },[misRazas, currentPage]);
+  
+  
   const handleNext = () =>{
     const totalDeElementos = misRazas.length;
     const nextPage = currentPage + 1;

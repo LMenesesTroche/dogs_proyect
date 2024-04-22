@@ -47,7 +47,6 @@ function App() {
   }
 
   const postDog = async (props) => {
-    console.log(props)
     try{
       let response = await axios.post(URL, props);
       window.alert("The dog was created succesfully!")
