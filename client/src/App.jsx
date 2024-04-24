@@ -48,8 +48,10 @@ function App() {
     try{
       response.data.forEach( async element => {
         if(element){ //mando un objeto a la vez;
-          let imagenReal = await  axios(imagenURL +`/${element.image}`);
-          element.image = imagenReal.data.url;
+          if(element.image){
+            let imagenReal = await  axios(imagenURL +`/${element.image}`);
+            element.image = imagenReal.data.url;
+          }
           dispatch(addRaza(element));
         }
       });

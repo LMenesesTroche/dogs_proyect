@@ -32,6 +32,10 @@ module.exports = (sequelize) => {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
     },
+    fromDataBase: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
+    },
   }, { timestamps: false });
 
   // Gancho para generar el UUID antes de crear un nuevo registro

@@ -3,7 +3,7 @@ import Card from "../Card";
 import styles from "./styles.module.css"
 import { useDispatch } from 'react-redux';
 import { useSelector } from "react-redux";
-import { orderDogsByTemperaments } from '../../redux/actions';
+import { orderDogsByTemperaments, orderDogsByOrigin } from '../../redux/actions';
 
 //URL de la API
 const URL = 'http://localhost:3001/dogs';
@@ -57,6 +57,10 @@ export const Home =  ({ getDogs, getTemperaments }) => {
     setCurrentPage(0);
     dispatch(orderDogsByTemperaments(e.target.value))
  }
+ const handleOrigin = (e) => {
+  setCurrentPage(0);
+  dispatch(orderDogsByOrigin(e.target.value))
+ }
   return (
     
     <div className={styles.container}>
@@ -65,9 +69,18 @@ export const Home =  ({ getDogs, getTemperaments }) => {
           {misTemperamentos? misTemperamentos.map((element,index)=>(
               <option key={index} value={element}>{element}</option>
           )):null}       
-          <option key={1000}  value={"todos"}>Todos</option> 
+          <option key={1000}  value={"all"}>All</option> 
           </select> 
       </div>  
+      <div>
+        <select onChange={handleOrigin} name='origin'>
+          <option value={"api"}>API</option>
+          <option value={"dataBase"}>Data Base</option>
+          <option value={"all"}>All</option>
+
+          
+        </select>
+      </div>
       <h1>Page{currentPage}</h1>
       <button  onClick={handlePrev}>Prev</button>
       <button onClick={handleNext}>next</button>
