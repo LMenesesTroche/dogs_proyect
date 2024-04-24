@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import styles from './styles.module.css'
 
-const  SearchBar = (props) => {
+const  SearchBar = ({ onSearch, setCurrentPage}) => {
 
-   const { onSearch } =  props;// Nos traemos la funcion que hace la busqueda 
-
+   
 
    const [id, setId] = useState('')
   
    const handleClick = () =>{//(Lo que pasa cuando hacemos click)
       //Mandamos lo que ponen en el buscador a la funcion onSearch
+      // setCurrentPage();
       onSearch(id);
    }
 

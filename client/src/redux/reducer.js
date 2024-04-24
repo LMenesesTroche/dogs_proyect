@@ -25,23 +25,10 @@ const rootReducer = (state = initialState, {type, payload}) =>{
                 razasOriginales: [], // Limpiar las razas originales
             }
         case ORDER_TEMPERAMENTS:
-            // Filtrar las razas originales en lugar de misRazas
-            const objClon = structuredClone(state.razasOriginales);
-            
-            const quitadorDeComasYEspacios = objClon.forEach((element)=>{
-                if (element.temperament) { // Verifica si temperament está definido
-                    const elementSinComa =  element.temperament.split(',');                        
-                    const  arrAux = [];
-                    const sinEspacios = elementSinComa.forEach((element)=>{
-                        arrAux.push(element.trim(' '));
-                    })
-                    element.temperament = arrAux.join(', '); // Une los elementos del array con comas y un espacio
-                }
-            })
-
             return{
                 ...state,
-                misRazas:  payload !== 'todos' ? objClon.filter((element)=>element.temperament &&  element.temperament.includes(payload))  : state.razasOriginales
+                //Convertir mis razas a un filtrado de mis razas originales
+                misRazas:  payload !== 'todos' ? state.razasOriginales.filter((element)=>element.temperament &&  element.temperament.includes(payload))  : state.razasOriginales
             }    
         default:
             return{...state};

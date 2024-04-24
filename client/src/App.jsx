@@ -39,8 +39,8 @@ function App() {
       console.log(error.message);
     }
   }
-  const setCurrentPage = {
-    
+  const setCurrentPage = async () => {
+    console.log('llega');
   }
   const getDogs = async () => {
     const  imagenURL = "https://api.thedogapi.com/v1/images"
@@ -84,7 +84,7 @@ function App() {
     <div className='App'>
           { 
             location.pathname !== '/' ?
-            <Nav onSearch={onSearch}  /> :
+            <Nav onSearch={onSearch} setCurrentPage={setCurrentPage} /> :
             undefined
           }
       <Routes>
