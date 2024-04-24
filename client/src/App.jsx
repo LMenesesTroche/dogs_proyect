@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Login from './components/Login'
 import { Route, Routes, useLocation ,useNavigate} from 'react-router-dom';
-import { addRaza, addTemperament } from './redux/actions';
+import { addRaza, addTemperament, deleteAll } from './redux/actions';
 import Nav from './components/Nav';
 import Home from './components/home';
 import Detail from './components/Detail';
@@ -18,13 +18,23 @@ function App() {
   const location = useLocation(); // Obtener la ubicación actual del enrutador
 
   const onSearch = async (id) => {
+    const  imagenURL = "https://api.thedogapi.com/v1/images"
     try{
       let response = await  axios(URL + `/raza/${id}`);
+      if(response.data.message !== undefined){
+        window.alert(response.data.message)
+      }
+      dispatch(deleteAll());
       response.data.forEach( async element => {
         if(element){ //mando un objeto a la vez;
+          if(element.image){
+            let imagenReal = await  axios(imagenURL +`/${element.image}`);
+            element.image = imagenReal.data.url;
+          }
           dispatch(addRaza(element));
         }
       });
+      
     }catch(error){
       console.log(error.message);
     }
@@ -36,8 +46,8 @@ function App() {
     try{
       response.data.forEach( async element => {
         if(element){ //mando un objeto a la vez;
-          let imagenReal = await  axios(imagenURL +`/${element.imagen}`);
-          element.imagen = imagenReal.data.url;
+          let imagenReal = await  axios(imagenURL +`/${element.image}`);
+          element.image = imagenReal.data.url;
           dispatch(addRaza(element));
         }
       });

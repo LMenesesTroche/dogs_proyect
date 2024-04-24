@@ -1,15 +1,15 @@
 import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
 
-export default function Card({ id ,imagen, nombre, peso, temperamento }) {
+export default function Card({ id ,image, name, weight, temperament }) {
    return (
       <div className={styles.container}>
-        <img className={styles.img} src={imagen}></img>
+        <img className={styles.img} src={image}></img>
         <Link to={`/detail/${id}`}>
-            <h2 >{nombre}</h2>
+            <h2 >{name}</h2>
          </Link>
-        <h2 >{peso}</h2>
-        <h2 >{temperamento}</h2>
+        <h2 >{weight}</h2>
+        <h2 >{temperament}</h2>
       </div>
    );
 }

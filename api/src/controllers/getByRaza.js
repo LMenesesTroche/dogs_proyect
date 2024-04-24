@@ -1,6 +1,7 @@
 const axios = require('axios');
-const { dog } = require('../db');
+const { Dog } = require('../db');
 const URL = 'https://api.thedogapi.com/v1/breeds';
+const { Sequelize } = require('sequelize');
 
 //Necesita devolverme los perros que tengan la raza mandada
 async function getByRaza(req,res){
@@ -19,23 +20,30 @@ async function getByRaza(req,res){
             if(x.breed_group && razaEnMinusculas === x.breed_group.toLowerCase()){
                 return{
                     id:x.id,
-                    imagen:x.reference_image_id,
-                    nombre: x.name,
-                    temperamento:x.temperament,
-                    peso:x.weight.imperial
+                    image:x.reference_image_id,
+                    name: x.name,
+                    temperament:x.temperament,
+                    weight:x.weight.imperial
                 }  
             }
         }); 
-        
-        
-        if(arrayDePerros.length<1){
-            res.status(404).json("No se encontro la raza");
-        }
-        
-        res.status(200).json(arrayDePerros);
-        
-        
+        let perrosEnApiSinNull = [];
+        arrayDePerros.forEach(element => {
+            if(element){
+                perrosEnApiSinNull.push(element);
+            }
+        });
 
+        const arrDePerrosEnDb = await Dog.findAll({ 
+            where: { breed_group: Sequelize.where(Sequelize.fn('LOWER',Sequelize.col('breed_group')),razaEnMinusculas) }});
+        
+        const dbyApi = arrDePerrosEnDb.concat(perrosEnApiSinNull);
+
+        //si no hay perros de esa raza
+        if(dbyApi.length<1){
+            return res.status(200).json({message: "We don't have that breed of dog."} );
+        }
+        res.status(200).json(dbyApi);
     }catch(error){
         console.log("error en getByRaza.js");
         res.status(500).send({message:error.message});

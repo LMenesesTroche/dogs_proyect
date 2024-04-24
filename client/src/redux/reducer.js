@@ -1,4 +1,4 @@
-import { ADD_RAZA, ADD_TEMPERAMENT } from "./actions";
+import { ADD_RAZA, ADD_TEMPERAMENT, DELETE_ALL } from "./actions";
 
 const initialState = {
     misRazas:[],
@@ -16,6 +16,10 @@ const rootReducer = (state = initialState, {type, payload}) =>{
             return{
                 ...state,
                 misTemperamentos:[...state.misTemperamentos,payload]
+            }
+        case DELETE_ALL:
+            return{
+                misRazas:[]
             }
         default:
             return{...state};

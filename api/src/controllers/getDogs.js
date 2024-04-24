@@ -12,10 +12,10 @@ async function getDogs(req,res){
         const arrayPerros = response.data.map(x => { //mapeamos el objeto que nos devuelvela respuesta
             return {
               id: x.id,
-              imagen: x.reference_image_id,
-              nombre: x.name,
-              temperamento: x.temperament,
-              peso: x.weight.metric, // Creamos un array por cada raza
+              image: x.reference_image_id,
+              name: x.name,
+              temperament: x.temperament,
+              weight: x.weight.metric, // Creamos un array por cada raza
             };
           }); 
 

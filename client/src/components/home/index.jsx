@@ -54,10 +54,10 @@ export const Home =  ({ getDogs }) => {
         <Card 
         key={element.id}
         id={element.id}
-        imagen={element.imagen}
-        nombre={element.nombre}
-        peso={element.peso}
-        temperamento={element.temperamento}
+        image={element.image}
+        name={element.name}
+        weight={element.weight}
+        temperament={element.temperament}
 
         />
       )):null}
