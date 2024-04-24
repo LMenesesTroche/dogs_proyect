@@ -7,11 +7,13 @@ import { useSelector } from "react-redux";
 const URL = 'http://localhost:3001/dogs';
 
 export default function Form({ postDog, getTemperaments}){
+
+    const misTemperamentos = useSelector(state => state.misTemperamentos );
+    
     //Usar useEffect para evitar llamados infinitos
     useEffect(()=>{
         getTemperaments();
     },[])
-    const misTemperamentos = useSelector(state => state.misTemperamentos );
     // console.log(misTemperamentos)
     
     const [dogData, setUserData] = useState({

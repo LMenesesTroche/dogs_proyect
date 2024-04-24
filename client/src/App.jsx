@@ -39,7 +39,9 @@ function App() {
       console.log(error.message);
     }
   }
-
+  const setCurrentPage = {
+    
+  }
   const getDogs = async () => {
     const  imagenURL = "https://api.thedogapi.com/v1/images"
     let response = await  axios(URL);
@@ -94,7 +96,7 @@ function App() {
 
         {/* Home */}
         <Route path='/home' element={
-          <Home getDogs={getDogs}/>
+          <Home getDogs={getDogs} getTemperaments={getTemperaments}/>
         } />
 
         <Route path='/detail/:id' element={

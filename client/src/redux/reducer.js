@@ -1,7 +1,8 @@
-import { ADD_RAZA, ADD_TEMPERAMENT, DELETE_ALL } from "./actions";
+import { ADD_RAZA, ADD_TEMPERAMENT, DELETE_ALL, ORDER_TEMPERAMENTS } from "./actions";
 
 const initialState = {
     misRazas:[],
+    razasOriginales: [], // Almacenar las razas originales
     misTemperamentos:[],
 }
 
@@ -10,7 +11,8 @@ const rootReducer = (state = initialState, {type, payload}) =>{
         case ADD_RAZA:
             return{
                 ...state,
-                misRazas:[...state.misRazas,payload]
+                misRazas:[...state.misRazas,payload],
+                razasOriginales: [...state.razasOriginales, payload], // Actualizar las razas originales
             }
         case ADD_TEMPERAMENT:
             return{
@@ -19,8 +21,28 @@ const rootReducer = (state = initialState, {type, payload}) =>{
             }
         case DELETE_ALL:
             return{
-                misRazas:[]
+                misRazas:[],
+                razasOriginales: [], // Limpiar las razas originales
             }
+        case ORDER_TEMPERAMENTS:
+            // Filtrar las razas originales en lugar de misRazas
+            const objClon = structuredClone(state.razasOriginales);
+            
+            const quitadorDeComasYEspacios = objClon.forEach((element)=>{
+                if (element.temperament) { // Verifica si temperament está definido
+                    const elementSinComa =  element.temperament.split(',');                        
+                    const  arrAux = [];
+                    const sinEspacios = elementSinComa.forEach((element)=>{
+                        arrAux.push(element.trim(' '));
+                    })
+                    element.temperament = arrAux.join(', '); // Une los elementos del array con comas y un espacio
+                }
+            })
+
+            return{
+                ...state,
+                misRazas:  payload !== 'todos' ? objClon.filter((element)=>element.temperament &&  element.temperament.includes(payload))  : state.razasOriginales
+            }    
         default:
             return{...state};
     }

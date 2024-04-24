@@ -2,6 +2,7 @@ import axios from 'axios';
 export const ADD_RAZA = 'ADD_RAZA';
 export const ADD_TEMPERAMENT = 'ADD_TEMPERAMENT';
 export const DELETE_ALL = 'DELETE_ALL';
+export const ORDER_TEMPERAMENTS = 'ORDER_TEMPERAMENTS';
 
 
 export function addRaza(raza){
@@ -19,5 +20,11 @@ export function addTemperament(temperament){
 export function deleteAll(){
     return{
         type: DELETE_ALL,
+    }
+}
+export function orderDogsByTemperaments(temperament){
+    return{
+        type: ORDER_TEMPERAMENTS,
+        payload:temperament
     }
 }

@@ -3,14 +3,24 @@ import Card from "../Card";
 import styles from "./styles.module.css"
 import { useDispatch } from 'react-redux';
 import { useSelector } from "react-redux";
+import { orderDogsByTemperaments } from '../../redux/actions';
 
+//URL de la API
 const URL = 'http://localhost:3001/dogs';
 const itemsPorPagina = 8;
 
 
-export const Home =  ({ getDogs }) => {
+export const Home =  ({ getDogs, getTemperaments }) => {
+  const dispatch = useDispatch();
+
   //Traemos a las razas de mi reducer
   const misRazas = useSelector(state => state.misRazas );
+  const misTemperamentos = useSelector(state => state.misTemperamentos );  
+    //Usar useEffect para evitar llamados infinitos
+    useEffect(()=>{
+        getTemperaments();
+    },[])
+
   //Items son los datos recortados que se mostraran en la pantalla
   const [items, setItems] = useState([...misRazas].splice(0, itemsPorPagina));
   //Esta es la pagina actual en la que estamos
@@ -43,9 +53,21 @@ export const Home =  ({ getDogs }) => {
     setItems([...misRazas].splice(firstIndex, itemsPorPagina))
     setCurrentPage(prevPage);
   }
+  const handleOrderTemperaments = (e)=>{
+    setCurrentPage(0);
+    dispatch(orderDogsByTemperaments(e.target.value))
+ }
   return (
     
     <div className={styles.container}>
+      <div>
+        <select onChange={handleOrderTemperaments} name='temperament'>
+          {misTemperamentos? misTemperamentos.map((element,index)=>(
+              <option key={index} value={element}>{element}</option>
+          )):null}       
+          <option key={1000}  value={"todos"}>Todos</option> 
+          </select> 
+      </div>  
       <h1>Page{currentPage}</h1>
       <button  onClick={handlePrev}>Prev</button>
       <button onClick={handleNext}>next</button>
