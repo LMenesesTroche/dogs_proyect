@@ -1,6 +1,7 @@
 import React, {useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import perritoPredeterminado from "./perritoPredeterminado.jpg"
 
 const URL = 'http://localhost:3001/dogs';
 const  imagenURL = "https://api.thedogapi.com/v1/images/"
@@ -35,7 +36,7 @@ export default function Detail(){
                 
             </div>
            <div className='image'>
-               <img src={dog.image} alt="Imagen del perro" height={150} width={150}/>           
+               <img src={dog.image?dog.image:perritoPredeterminado} alt="Imagen del perro" height={150} width={150}/>           
            </div>
         </div>
 

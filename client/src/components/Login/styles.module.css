@@ -19,7 +19,6 @@
     align-items: center;
     justify-content:space-evenly;
     border-radius: 50px;
-    margin-bottom: 70px;
     
 }
 .containerOfbutton{
@@ -42,8 +41,7 @@
     margin-bottom: 50px;
     
 }
-img {
-    
+.imagen {
     height: 200px;
     width: 200px;
     border-radius: 950px;

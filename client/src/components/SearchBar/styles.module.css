@@ -10,7 +10,7 @@
 }
 
 .Button{
-    background-color: #08B2C9;
+    background-color: #d8c534;
     color: black;
     border: none;
     padding: 10px;
@@ -19,7 +19,9 @@
     margin-right: 10px;
     margin-left: 10px;
 }
-
+.Button:hover{
+    background-color: #b9a92f;
+}
 .Input{
     border-radius: 10px;
     border: none;

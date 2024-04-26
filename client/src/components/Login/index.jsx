@@ -7,9 +7,8 @@ export const Login = () => {
   return (
     <div className={styles.container}>
       <div className={styles.containerPequeño}>
-        <div className={styles.image}>
-              <img src={image} alt="Imagen de perrito"/>
-        </div>
+
+        <img src={image} className={styles.imagen}alt="Imagen de perrito"/>
         <div className={styles.containerOfbutton}>
           <Link to="/home">
               <button className={styles.button} >Home</button>

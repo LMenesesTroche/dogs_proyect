@@ -4,7 +4,7 @@ import styles from "./styles.module.css"
 import { useDispatch } from 'react-redux';
 import { useSelector } from "react-redux";
 import { orderDogsByTemperaments, filterDogsByOrigin, orderByAbc,orderByWeight } from '../../redux/actions';
-
+import perritoPredeterminado from "./perritoPredeterminado.jpg"
 //URL de la API
 const URL = 'http://localhost:3001/dogs';
 const itemsPorPagina = 8;
@@ -133,7 +133,7 @@ const handleChange2 = (e) => {
         <Card 
         key={element.id}
         id={element.id}
-        image={element.image}
+        image={element.image?element.image:perritoPredeterminado}
         name={element.name}
         weight={element.weight}
         temperament={element.temperament}

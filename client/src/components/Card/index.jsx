@@ -6,7 +6,7 @@ export default function Card({ id ,image, name, weight, temperament, breed_group
       <div className={styles.container}>
         <img className={styles.img} src={image}></img>
         <Link to={`/detail/${id}`}>
-            <h2 >{name}</h2>
+            <h2 className={styles.detail} >{name}</h2>
          </Link>
         <h2 >{weight}</h2>
         <h2 >{breed_group}</h2>

@@ -2,21 +2,19 @@ import React from "react";
 import SearchBar from "../SearchBar/index";
 import {Link} from 'react-router-dom'
 import styles from './styles.module.css'
+import image from './logoPatitas.jpg'
 const Nav = ({  onSearch }) => {
   return (
     <>
         <div className={styles.container}>
-          <div className={styles.containerOfSearchBar}>
+          <img src={image} className={styles.imagen} alt="Imagen de perrito"/>
+            <Link to={`/home`}>
+              <button className={styles.button}>home</button>
+          </Link>
+          <Link to={`/form`}>
+              <button className={styles.button}>form</button>
+          </Link>
             <SearchBar onSearch={onSearch} />
-          </div>
-          <Link to={`/home`}>
-            <button 
-            >home</button>
-         </Link>
-         <Link to={`/form`}>
-            <button >form</button>
-         </Link>
-          
         </div>
     </>
   );

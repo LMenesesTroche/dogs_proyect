@@ -1,10 +1,20 @@
 .container {
-    background-color: rgb(184, 184, 184);
-    width: 250px;
-    border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.658);
+  width: 250px;
+  border-radius: 20px;
+
   }
 .img {
-  width: 50px;
-  height: 50px;
-
+  width: 60px;
+  height: 60px;
+}
+.detail{
+  color: black;
+  cursor: pointer;
+}
+.detail:hover {
+  color: #9b8e27;
+}
+a{
+  text-decoration: none;
 }
