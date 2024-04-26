@@ -9,10 +9,10 @@ const Nav = ({  onSearch }) => {
         <div className={styles.container}>
           <img src={image} className={styles.imagen} alt="Imagen de perrito"/>
             <Link to={`/home`}>
-              <button className={styles.button}>home</button>
+              <button className={styles.button}>Home</button>
           </Link>
           <Link to={`/form`}>
-              <button className={styles.button}>form</button>
+              <button className={styles.button}>Form</button>
           </Link>
             <SearchBar onSearch={onSearch} />
         </div>

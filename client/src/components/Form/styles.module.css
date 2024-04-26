@@ -1,17 +1,55 @@
 .container{
-    width: 200px;
+    width: 800px;
     display: flex;
     flex-direction: column;
-    margin-top:50px;
-    margin-left: 240px;
-    height: 300px;
+    /* Alinea de  forma vertical */
+    justify-content:flex-start;
+    /* Alinea horizontal */
+    align-items: center;
+    height: 500px;
+    margin-top: -20px;
+    background-color: rgba(255, 255, 255, 0.658);
+    border-radius: 90px;
 }
 .form{
-    color:rgb(0, 0, 0);
+    display: flex;
+    flex-direction: column;
+}
+.arriba{
+    display: flex;
+    flex-direction: row;
 }
 .inputForm{
     color:rgb(0, 0, 0);
 }
 .warning{
     color:red;
+}
+.seleccionMultiple{
+    height: 300px;
+}
+.primero{
+    width: 200px;
+    height: auto;
+}
+.segundo{
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: auto;
+}
+.button{
+    padding: 15px 20px;
+    /* color de fondo */
+    background-color: #d8c534;
+    /* color de las letras */
+    color: rgb(54, 54, 54);
+    /* quitar borde */
+    border:none;
+    /* borde redondeado */
+    border-radius: 8px;
+    font-weight: 550;
+    /* font-size: 17px; */
+    margin-top: 7px;
+    
 }

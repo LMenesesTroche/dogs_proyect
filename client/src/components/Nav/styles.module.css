@@ -21,11 +21,13 @@
     /* color de fondo */
     background-color: #d8c534;
     /* color de las letras */
-    color: black;
+    color: rgb(54, 54, 54);
     /* quitar borde */
     border:none;
     /* borde redondeado */
-     border-radius: 8px;
+    border-radius: 8px;
+    font-weight: 550;
+    /* font-size: 17px; */
     
 }
 .button:hover{

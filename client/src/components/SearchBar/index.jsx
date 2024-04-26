@@ -23,9 +23,9 @@ const  SearchBar = ({ onSearch, setCurrentPage}) => {
             className={styles.Input} 
             onChange={handleChange}
             type='search'
-            placeholder='id..'>
+            placeholder='Search breed'>
          </input>
-         <button  onClick={handleClick} className={styles.Button}>Agregar</button>
+         <button  onClick={handleClick} className={styles.Button}>Search</button>
       </div>
    )
    
