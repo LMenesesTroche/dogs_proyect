@@ -3,7 +3,10 @@ export const ADD_RAZA = 'ADD_RAZA';
 export const ADD_TEMPERAMENT = 'ADD_TEMPERAMENT';
 export const DELETE_ALL = 'DELETE_ALL';
 export const ORDER_TEMPERAMENTS = 'ORDER_TEMPERAMENTS';
-export const ORDER_ORIGIN = 'ORDER_ORIGIN';
+export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN';
+export const ORDER_BY_ABC = 'ORDER_BY_ABC';
+export const ORDER_BY_WEIGHT = 'ORDER_BY_WEIGHT';
+
 
 
 export function addRaza(raza){
@@ -29,9 +32,21 @@ export function orderDogsByTemperaments(temperament){
         payload:temperament
     }
 }
-export function orderDogsByOrigin(origin){
+export function filterDogsByOrigin(origin){
     return{
-        type: ORDER_ORIGIN,
+        type: FILTER_BY_ORIGIN,
         payload:origin
+    }
+}
+export function orderByAbc(order){
+    return{
+        type: ORDER_BY_ABC,
+        payload:order
+    }
+}
+export function orderByWeight(weight){
+    return{
+        type: ORDER_BY_WEIGHT,
+        payload: weight
     }
 }

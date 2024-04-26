@@ -3,7 +3,6 @@ const { Dog } = require('../db');
 
 const URL = 'https://api.thedogapi.com/v1/breeds';
 
-
 //Necesita devolverme todos los perros
 async function getDogs(req,res){
 
@@ -19,6 +18,7 @@ async function getDogs(req,res){
               temperament: x.temperament,
               weight: x.weight.metric, // Creamos un array por cada raza
               fromDataBase: false,
+            breed_group:x.breed_group,
             };
           }); 
           

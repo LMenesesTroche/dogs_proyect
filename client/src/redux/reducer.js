@@ -1,4 +1,4 @@
-import { ADD_RAZA, ADD_TEMPERAMENT, DELETE_ALL, ORDER_TEMPERAMENTS, ORDER_ORIGIN } from "./actions";
+import { ADD_RAZA, ADD_TEMPERAMENT, DELETE_ALL, ORDER_TEMPERAMENTS, FILTER_BY_ORIGIN, ORDER_BY_ABC } from "./actions";
 
 const initialState = {
     misRazas:[],
@@ -30,7 +30,7 @@ const rootReducer = (state = initialState, {type, payload}) =>{
                 //Convertir "misRazas" a un filtrado de mis razas originales
                 misRazas:  payload !== 'all' ? state.razasOriginales.filter((element)=>element.temperament &&  element.temperament.includes(payload))  : state.razasOriginales
             }    
-        case ORDER_ORIGIN:
+        case FILTER_BY_ORIGIN:
             console.log(payload)
             return{
                 ...state,
@@ -40,7 +40,49 @@ const rootReducer = (state = initialState, {type, payload}) =>{
                 ? state.razasOriginales.filter(element => element.fromDataBase) // quitamos los que tengan from database en false
                 : state.razasOriginales // Si payload es 'all', devolver todas las razasOriginales sin filtrar
 
-            }   
+            } 
+            //todo REVISAR ESTO URGENTE
+            case ORDER_BY_ABC:
+                console.log(payload)
+                const sortedArr = payload === 'asc' ?
+                [...state.razasOriginales].sort(function (a, b) {
+                    if (a.name > b.name) { return 1 }
+                    if (b.name > a.name) { return -1 }
+                    return 0;
+                }) :
+                [...state.razasOriginales].sort(function (a, b) {
+                    if (a.name > b.name) { return -1; }
+                    if (b.name > a.name) { return 1; }
+                    return 0;
+                })
+            return {
+                ...state,
+                misRazas: sortedArr
+            }
+
+            case 'ORDER_BY_WEIGHT':
+                console.log("llega a weitght")
+                console.log(state.razasOriginales)
+            const sortedWeight = payload === 'asc' ?
+                [...state.razasOriginales].sort(function (a, b) {
+                    if(a.weight_min === null) { return 0 }
+                    if (a.weight_min < b.weight_min) { return 1 }
+                    if (b.weight_min < a.weight_min) { return -1 }
+                    return 0;
+                }) :
+                [...state.razasOriginales].sort(function (a, b) {
+                    if(a.weight_min === null) { return 0 }
+                    if (a.weight_min < b.weight_min) { return -1; }
+                    if (b.weight_min < a.weight_min) { return 1; }
+                    return 0;
+                })
+            return {
+                ...state,
+                misRazas: sortedWeight
+            }
+              
+       
+            
         default:
             return{...state};
     }

@@ -3,7 +3,7 @@ import Card from "../Card";
 import styles from "./styles.module.css"
 import { useDispatch } from 'react-redux';
 import { useSelector } from "react-redux";
-import { orderDogsByTemperaments, orderDogsByOrigin } from '../../redux/actions';
+import { orderDogsByTemperaments, filterDogsByOrigin, orderByAbc,orderByWeight } from '../../redux/actions';
 
 //URL de la API
 const URL = 'http://localhost:3001/dogs';
@@ -30,6 +30,8 @@ export const Home =  ({ getDogs, getTemperaments }) => {
   useEffect(()=>{
     getDogs();
   },[])
+
+  
 
     // Actualizamos los items cuando misRazas cambien
     useEffect(() => {
@@ -59,8 +61,36 @@ export const Home =  ({ getDogs, getTemperaments }) => {
  }
  const handleOrigin = (e) => {
   setCurrentPage(0);
-  dispatch(orderDogsByOrigin(e.target.value))
+  dispatch(filterDogsByOrigin(e.target.value))
  }
+
+//Info del ordenamiento
+const [orderData, setOrderData] = useState({
+  typeOfOrder: '',
+  acdc: '',
+});
+
+const handleChange1 = (e) => {
+  const { value } = e.target;
+  setOrderData(prevState => ({
+    ...prevState,
+    typeOfOrder: value
+  }));
+  dispatch(orderByAbc(value))
+};
+const handleChange2 = (e) => {
+  const { value } = e.target;
+  setOrderData(prevState => ({
+    ...prevState,
+    typeOfOrder: value
+  }));
+  dispatch(orderByWeight(value))
+};
+
+
+
+
+
   return (
     
     <div className={styles.container}>
@@ -77,10 +107,24 @@ export const Home =  ({ getDogs, getTemperaments }) => {
           <option value={"api"}>API</option>
           <option value={"dataBase"}>Data Base</option>
           <option value={"all"}>All</option>
-
-          
         </select>
       </div>
+
+      <div>
+        <label>Alphabetical order</label>
+          <select onChange={handleChange1} name='typeOfOrder'>
+            <option value={"asc"}>Asc</option>
+            <option value={"dsc"}>Dsc</option>
+          </select>
+      </div>
+      <div>
+        <label>Weight order</label>
+        <select onChange={handleChange2} name='weightOrder'>
+          <option value={"asc"}>Asc</option>
+          <option  value={"dsc"}> Dsc</option>
+        </select>
+      </div>
+      
       <h1>Page{currentPage}</h1>
       <button  onClick={handlePrev}>Prev</button>
       <button onClick={handleNext}>next</button>
@@ -93,6 +137,7 @@ export const Home =  ({ getDogs, getTemperaments }) => {
         name={element.name}
         weight={element.weight}
         temperament={element.temperament}
+        breed_group={element.breed_group}
 
         />
       )):null}

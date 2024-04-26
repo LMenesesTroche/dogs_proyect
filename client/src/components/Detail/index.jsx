@@ -26,7 +26,6 @@ export default function Detail(){
     return(
         <div className='containerOfDetails'>
             <div  >
-                <h2>ID| {dog.id}</h2>
                 <h2>Name|{dog.name}</h2>
                 <h2>Height| {dog.height ? dog.height.metric : 'Unknown'}</h2>
                 <h2>Weight| {dog.weight ? dog.weight.metric : 'Unknown'}</h2>
