@@ -71,6 +71,7 @@ const [orderData, setOrderData] = useState({
 });
 
 const handleChange1 = (e) => {
+  setCurrentPage(0);
   const { value } = e.target;
   setOrderData(prevState => ({
     ...prevState,
@@ -79,6 +80,7 @@ const handleChange1 = (e) => {
   dispatch(orderByAbc(value))
 };
 const handleChange2 = (e) => {
+  setCurrentPage(0);
   const { value } = e.target;
   setOrderData(prevState => ({
     ...prevState,
@@ -86,11 +88,6 @@ const handleChange2 = (e) => {
   }));
   dispatch(orderByWeight(value))
 };
-
-
-
-
-
   return (
     
     <div className={styles.container}>

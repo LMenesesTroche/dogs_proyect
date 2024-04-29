@@ -61,25 +61,34 @@ const rootReducer = (state = initialState, {type, payload}) =>{
             }
 
             case 'ORDER_BY_WEIGHT':
-                console.log("llega a weitght")
-                console.log(state.razasOriginales)
-            const sortedWeight = payload === 'asc' ?
-                [...state.razasOriginales].sort(function (a, b) {
-                    if(a.weight_min === null) { return 0 }
-                    if (a.weight_min < b.weight_min) { return 1 }
-                    if (b.weight_min < a.weight_min) { return -1 }
-                    return 0;
-                }) :
-                [...state.razasOriginales].sort(function (a, b) {
-                    if(a.weight_min === null) { return 0 }
-                    if (a.weight_min < b.weight_min) { return -1; }
-                    if (b.weight_min < a.weight_min) { return 1; }
-                    return 0;
-                })
-            return {
-                ...state,
-                misRazas: sortedWeight
-            }
+                const parseWeight = (weightString) => {
+                    if(typeof weightString === 'string'){
+                        // Usar expresión regular para encontrar el número en la cadena de peso
+                        const regex = /(\d+)/;
+                        const match = weightString.match(regex);
+                        if (match) {
+                          return parseInt(match[0]); // Convertir el número encontrado a un entero
+                        }
+                        return 0; // En caso de que no se encuentre ningún número, devolver 0
+                    }
+                  };
+                const sortedWeight = payload === 'asc' ?
+                    [...state.razasOriginales].sort((a, b) => {
+                        const weightA = parseWeight(a.weight);
+                        const weightB = parseWeight(b.weight);
+                        return weightA - weightB;
+                      })
+                    :
+                    [...state.razasOriginales].sort((a, b) => {
+                        const weightA = parseWeight(a.weight);
+                        const weightB = parseWeight(b.weight);
+                        return weightB - weightA;
+                      })
+                
+                return {
+                    ...state,
+                    misRazas: sortedWeight
+                }
               
        
             

@@ -5,15 +5,16 @@
 
   }
 .img {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
+  border-radius: 100px;
 }
 .detail{
   color: black;
   cursor: pointer;
 }
 .detail:hover {
-  color: #9b8e27;
+  background-color: #e0d44c;
 }
 a{
   text-decoration: none;
