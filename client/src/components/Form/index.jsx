@@ -36,10 +36,19 @@ export default function Form({ postDog, getTemperaments}){
     //Lo que pasa despues de  oprimir submit
     const handlerSubmit = (event) =>{
         event.preventDefault();
+        
         if(errors.name||errors.height||errors.weight||errors.years||errors.temperament||errors.breed_group){
             alert("Form has errors")
         }else{
             postDog(dogData);
+            setUserData(prevState => ({
+                name: '',
+                height: '',
+                weight: '',
+                years: '',
+                breed_group: '',
+                temperament:[],
+            }));
         }
     }
     //Esto esta pasando mientras se va escribiendo en el form
@@ -71,7 +80,7 @@ export default function Form({ postDog, getTemperaments}){
             <h1>Create your dog!</h1>
             <label> (*) Means it cannot be empty</label>
 
-            <form className={styles.form}>
+            <form className={styles.form} id="formul">
                 <div className={styles.arriba}>
                     <div className={styles.primero}>    
                         <label>Name</label>
