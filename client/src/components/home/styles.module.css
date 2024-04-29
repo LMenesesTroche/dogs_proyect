@@ -14,10 +14,10 @@
   }
   .cards{
     width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  height: 670px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 670px;
   }
   .pages{
     display: flex;

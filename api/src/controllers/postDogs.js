@@ -16,7 +16,7 @@ async function postDogs(req, res) {
         if (findDog) {
             return res.status(200).json({ message: "El nombre del perro ya existe"});
         }
-
+        
         //Creamnos el perro si no existe
         const createDog = await Dog.create({
              name, height, weight, years, temperament, breed_group
