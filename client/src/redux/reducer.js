@@ -43,14 +43,13 @@ const rootReducer = (state = initialState, {type, payload}) =>{
             } 
             //todo REVISAR ESTO URGENTE
             case ORDER_BY_ABC:
-                console.log(payload)
                 const sortedArr = payload === 'asc' ?
-                [...state.razasOriginales].sort(function (a, b) {
+                [...state.misRazas].sort(function (a, b) {
                     if (a.name > b.name) { return 1 }
                     if (b.name > a.name) { return -1 }
                     return 0;
                 }) :
-                [...state.razasOriginales].sort(function (a, b) {
+                [...state.misRazas].sort(function (a, b) {
                     if (a.name > b.name) { return -1; }
                     if (b.name > a.name) { return 1; }
                     return 0;
@@ -61,27 +60,31 @@ const rootReducer = (state = initialState, {type, payload}) =>{
             }
 
             case 'ORDER_BY_WEIGHT':
-                const parseWeight = (weightString) => {
+                const pesoPromedio = (weightString) => {
                     if(typeof weightString === 'string'){
-                        // Usar expresión regular para encontrar el número en la cadena de peso
-                        const regex = /(\d+)/;
-                        const match = weightString.match(regex);
-                        if (match) {
-                          return parseInt(match[0]); // Convertir el número encontrado a un entero
-                        }
-                        return 0; // En caso de que no se encuentre ningún número, devolver 0
+                      let weightArray = weightString.split("-");
+                      let weight = weightArray.map((element) => {
+                        return Number (element.trim())
+                      });
+                      if(weight.length === 2){
+                        let suma =  weight[0] + weight[1];
+                        let promedio = suma / 2;
+                        return promedio
+                      }else{
+                        return weight;
+                      }
                     }
                   };
                 const sortedWeight = payload === 'asc' ?
-                    [...state.razasOriginales].sort((a, b) => {
-                        const weightA = parseWeight(a.weight);
-                        const weightB = parseWeight(b.weight);
+                    [...state.misRazas].sort((a, b) => {
+                        const weightA = pesoPromedio(a.weight);
+                        const weightB = pesoPromedio(b.weight);
                         return weightA - weightB;
                       })
                     :
-                    [...state.razasOriginales].sort((a, b) => {
-                        const weightA = parseWeight(a.weight);
-                        const weightB = parseWeight(b.weight);
+                    [...state.misRazas].sort((a, b) => {
+                        const weightA = pesoPromedio(a.weight);
+                        const weightB = pesoPromedio(b.weight);
                         return weightB - weightA;
                       })
                 

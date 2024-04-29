@@ -31,8 +31,6 @@ export const Home =  ({ getDogs, getTemperaments }) => {
     getDogs();
   },[])
 
-  
-
     // Actualizamos los items cuando misRazas cambien
     useEffect(() => {
     setItems([...misRazas].splice(currentPage * itemsPorPagina, itemsPorPagina));
