@@ -1,18 +1,24 @@
 const pesoPromedio = (weightString) => {
-  if(typeof weightString === 'string'){
-    let weightArray = weightString.split("-");
-    let weight = weightArray.map((element) => {
-      return element.trim()
-    });
-    if(weight.length === 2){
-      let suma = Number (weight[0]) + Number(weight[1]);
-      let promedio = suma / 2;
-      return promedio
+  if(weightString !== undefined){
+    if(typeof weightString === 'string'){
+      let weightArray = weightString.split("-");
+      let weight = weightArray.map((element) => {
+        return Number (element.trim())
+      });
+      if(weight.length === 2){
+        let suma =  weight[0] + weight[1];
+        let promedio = suma / 2;
+        return promedio
+      }else{
+        return weight;
+      }
     }else{
-      return weight;
+      return weightString
     }
+  }else{
+    console.log("Error en peso promedio")
   }
 };
 
-const weightA = parseWeight("2 - 10");
+const weightA = pesoPromedio('90-20');
 console.log(weightA)

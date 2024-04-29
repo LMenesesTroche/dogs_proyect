@@ -22,8 +22,7 @@ async function postDogs(req, res) {
              name, height, weight, years, temperament, breed_group
         });
 
-        // // const temperamentosArray = temperament.split(',').map(t => t.trim());
-
+        //TODO  REVISAR ESTO!!!
         await Promise.all(temperament.map(async (temp) => {
             try {
                 //Creamos el temperamento que le ponen al perro si es que no existen ya

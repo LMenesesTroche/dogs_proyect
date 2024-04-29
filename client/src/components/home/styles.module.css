@@ -1,6 +1,26 @@
 .container {
-    width: 80%;
+    background-color: rgba(181, 181, 181, 0.26);
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    /* Flex column significa se ordenan los componentes de forma vertical */
+    flex-direction:column;
+    justify-content: center;
+    margin-top: -20px;
+  }
+  .filtrosYOrdenamientos{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .cards{
+    width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 670px;
+  }
+  .pages{
+    display: flex;
+    flex-direction: row;
     justify-content: center;
   }

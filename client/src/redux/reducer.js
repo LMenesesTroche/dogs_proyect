@@ -31,7 +31,6 @@ const rootReducer = (state = initialState, {type, payload}) =>{
                 misRazas:  payload !== 'all' ? state.razasOriginales.filter((element)=>element.temperament &&  element.temperament.includes(payload))  : state.razasOriginales
             }    
         case FILTER_BY_ORIGIN:
-            console.log(payload)
             return{
                 ...state,
                 misRazas: payload === 'api' //Si el payload es api 
@@ -41,7 +40,6 @@ const rootReducer = (state = initialState, {type, payload}) =>{
                 : state.razasOriginales // Si payload es 'all', devolver todas las razasOriginales sin filtrar
 
             } 
-            //todo REVISAR ESTO URGENTE
             case ORDER_BY_ABC:
                 const sortedArr = payload === 'asc' ?
                 [...state.misRazas].sort(function (a, b) {

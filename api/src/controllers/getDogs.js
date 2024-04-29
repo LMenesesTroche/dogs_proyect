@@ -15,9 +15,9 @@ async function getDogs(req,res){
             id: x.id,
             image: x.reference_image_id,
             name: x.name,
-              temperament: x.temperament,
-              weight: x.weight.metric, // Creamos un array por cada raza
-              fromDataBase: false,
+            temperament: x.temperament,
+            weight: x.weight.metric, // Creamos un array por cada raza
+            fromDataBase: false,
             breed_group:x.breed_group,
             };
           }); 

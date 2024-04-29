@@ -1,7 +1,5 @@
 const objeto = [
-  {peso:"10 - 11"},
-  {peso:"11 - 12"},
-  {peso:"12 -  13"},
+  {peso:"10 - 11"}
 ]
 
 const aNumeros = objeto.forEach((elemento)=>{

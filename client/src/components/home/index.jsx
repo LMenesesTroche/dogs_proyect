@@ -89,53 +89,58 @@ const handleChange2 = (e) => {
   return (
     
     <div className={styles.container}>
-      <div>
-        <select onChange={handleOrderTemperaments} name='temperament'>
-          {misTemperamentos? misTemperamentos.map((element,index)=>(
-              <option key={index} value={element}>{element}</option>
-          )):null}       
-          <option key={1000}  value={"all"}>All</option> 
-          </select> 
-      </div>  
-      <div>
-        <select onChange={handleOrigin} name='origin'>
-          <option value={"api"}>API</option>
-          <option value={"dataBase"}>Data Base</option>
-          <option value={"all"}>All</option>
-        </select>
-      </div>
-
-      <div>
-        <label>Alphabetical order</label>
-          <select onChange={handleChange1} name='typeOfOrder'>
-            <option value={"asc"}>Asc</option>
-            <option value={"dsc"}>Dsc</option>
+      <div className={styles.filtrosYOrdenamientos}>
+        <div >
+          <select onChange={handleOrderTemperaments} name='temperament'>
+            {misTemperamentos? misTemperamentos.map((element,index)=>(
+                <option key={index} value={element}>{element}</option>
+            )):null}       
+            <option key={1000}  value={"all"}>All</option> 
+            </select> 
+        </div>  
+        <div>
+          <select onChange={handleOrigin} name='origin'>
+            <option value={"api"}>API</option>
+            <option value={"dataBase"}>Data Base</option>
+            <option value={"all"}>All</option>
           </select>
-      </div>
-      <div>
-        <label>Weight order</label>
-        <select onChange={handleChange2} name='weightOrder'>
-          <option value={"asc"}>Asc</option>
-          <option  value={"dsc"}> Dsc</option>
-        </select>
-      </div>
-      
-      <h1>Page{currentPage}</h1>
-      <button  onClick={handlePrev}>Prev</button>
-      <button onClick={handleNext}>next</button>
-      
-      {items? items.map((element)=>(
-        <Card 
-        key={element.id}
-        id={element.id}
-        image={element.image?element.image:perritoPredeterminado}
-        name={element.name}
-        weight={element.weight}
-        temperament={element.temperament}
-        breed_group={element.breed_group}
+        </div>
 
-        />
-      )):null}
+        <div>
+          <label>Alphabetical order</label>
+            <select onChange={handleChange1} name='typeOfOrder'>
+              <option value={"asc"}>Asc</option>
+              <option value={"dsc"}>Dsc</option>
+            </select>
+        </div>
+        <div>
+          <label>Weight order</label>
+          <select onChange={handleChange2} name='weightOrder'>
+            <option value={"asc"}>Asc</option>
+            <option  value={"dsc"}> Dsc</option>
+          </select>
+        </div>
+      </div>
+      
+      <div className={styles.cards}>
+        
+        {items? items.map((element)=>(
+          <Card 
+          key={element.id}
+          id={element.id}
+          image={element.image?element.image:perritoPredeterminado}
+          name={element.name}
+          weight={element.weight}
+          temperament={element.temperament}
+          breed_group={element.breed_group}
+          />
+        )):null}
+      </div>
+      <div className={styles.pages}>
+        <button  onClick={handlePrev}>Prev</button>
+        <h1>Page{currentPage}</h1>
+        <button onClick={handleNext}>next</button>
+      </div>
     </div>
   );
 };
