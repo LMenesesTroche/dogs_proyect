@@ -97,12 +97,13 @@ const handleChange2 = (e) => {
   }));
   dispatch(orderByWeight(value))
 };
-  return (
+  return ( 
     
     <div className={styles.container}>
       <div className={styles.filtrosYOrdenamientos}>
         <div >
-          <select onChange={handleOrderTemperaments} name='temperament'>
+          <label>Filter by temperament</label>
+          <select onChange={handleOrderTemperaments} name='temperament' className={styles.sleccionMultiple}>
             {misTemperamentos? misTemperamentos.map((element,index)=>(
                 <option key={index} value={element}>{element}</option>
             )):null}       
@@ -110,7 +111,8 @@ const handleChange2 = (e) => {
             </select> 
         </div>  
         <div>
-          <select onChange={handleOrigin} name='origin'>
+          <label>Filter by origin</label>
+          <select onChange={handleOrigin} name='origin' className={styles.sleccionMultiple}>
             <option value={"api"}>API</option>
             <option value={"dataBase"}>Data Base</option>
             <option value={"all"}>All</option>
@@ -119,14 +121,14 @@ const handleChange2 = (e) => {
 
         <div>
           <label>Alphabetical order</label>
-            <select onChange={handleChange1} name='typeOfOrder'>
+            <select onChange={handleChange1} name='typeOfOrder' className={styles.sleccionMultiple}>
               <option value={"asc"}>Asc</option>
               <option value={"dsc"}>Dsc</option>
             </select>
         </div>
         <div>
           <label>Weight order</label>
-          <select onChange={handleChange2} name='weightOrder'>
+          <select onChange={handleChange2} name='weightOrder' className={styles.sleccionMultiple}>
             <option value={"asc"}>Asc</option>
             <option  value={"dsc"}> Dsc</option>
           </select>
@@ -148,9 +150,9 @@ const handleChange2 = (e) => {
         )):null}
       </div>
       <div className={styles.pages}>
-        <button  onClick={handlePrev}>Prev</button>
-        <h1>Page{currentPage}</h1>
-        <button onClick={handleNext}>next</button>
+        <button  onClick={handlePrev} className={styles.botonPrev}>{"<"}</button>
+        <h1 className={styles.currentPage}>Page{currentPage+1}</h1>
+        <button onClick={handleNext}className={styles.botonNext} >{">"}</button>
       </div>
     </div>
   );

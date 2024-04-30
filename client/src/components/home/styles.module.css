@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 .container {
     background-color: rgba(181, 181, 181, 0.26);
     width: 100%;
@@ -8,19 +11,62 @@
     margin-top: -20px;
   }
   .filtrosYOrdenamientos{
+    font-family: 'Poppins','sans-serif';
+    height: 40px;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content:space-around;
+    align-items: center;
+  }
+  .seleccionMultiple{
+    display:flex;
+    height: 40px;
+    background-color: rgb(14, 243, 243);
+    color: brown;
   }
   .cards{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    height: 670px;
+    height: auto;
   }
   .pages{
     display: flex;
+    background-color: rgb(255, 255, 255);
     flex-direction: row;
     justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
   }
+  .botonPrev{
+    height: 50px;
+    width: 50px;
+    font-size: larger;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: rgb(0, 0, 0);
+  }
+  .botonPrev:hover{
+    color:rgb(193, 193, 0);
+    /* background-color: rgb(106, 106, 106); */
+  }
+  .botonNext{
+    height: 50px;
+    width: 50px;
+    font-size: larger;
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: rgb(0, 0, 0);
+  }
+  .botonNext:hover{
+    color:rgb(193, 193, 0);
+    /* background-color: rgb(106, 106, 106); */
+  }
+  .currentPage{
+    font-size: 20px;
+    padding: 20px;
+  }
+  
+  

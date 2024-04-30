@@ -1,13 +1,19 @@
 export default function validation(inputs){
     const errors = {};
     var numeros = "0123456789";
-    var letras = "abcdefghyjklmnñopqrstuvwxyz";
+    var letras = "abcdefghyjklmnñopqrstuvwxyzQWERTYUIOPLKJHGFDSAZXCVBNM";
+    var signos= "~!@#$%^&*()-=_`':+}{[]|:?><,./\;"
 
-        // Validacion nombre
-        //IndexOf devuelve la poscicion en el array de lo que le mandes
+    // Validacion nombre
+    //IndexOf devuelve la poscicion en el array de lo que le mandes
     for (let i=0; i < inputs.name.length; i++){
         if (numeros.indexOf( inputs.name.charAt(i),0) !=-1){
             errors.name = 'Cant have numbers'
+        }
+    }
+    for (let i=0; i < inputs.name.length; i++){
+        if (signos.indexOf( inputs.name.charAt(i),0) !=-1){
+            errors.name = 'Cant have signs'
         }
     }
     if(inputs.name.length > 15){
@@ -18,6 +24,11 @@ export default function validation(inputs){
     }
 
     //Validacion altura
+    for (let i=0; i < inputs.height.length; i++){
+        if (signos.indexOf( inputs.height.charAt(i),0) !=-1){
+            errors.height = 'Cant have signs'
+        }
+    }
     for (let i=0; i < inputs.height.length; i++){
         if (letras.indexOf( inputs.height.charAt(i),0) !=-1){
             errors.height = 'Cant have leters'
@@ -35,6 +46,11 @@ export default function validation(inputs){
 
     //Validacion peso
     for (let i=0; i < inputs.weight.length; i++){
+        if (signos.indexOf( inputs.weight.charAt(i),0) !=-1){
+            errors.weight = 'Cant have signs'
+        }
+    }
+    for (let i=0; i < inputs.weight.length; i++){
         if (letras.indexOf( inputs.weight.charAt(i),0) !=-1){
             errors.weight = 'Cant have leters'
         }
@@ -48,6 +64,11 @@ export default function validation(inputs){
 
     //Validacion años de Vida
     for (let i=0; i < inputs.years.length; i++){
+        if (signos.indexOf( inputs.years.charAt(i),0) !=-1){
+            errors.years = 'Cant have signs'
+        }
+    }
+    for (let i=0; i < inputs.years.length; i++){
         if (letras.indexOf( inputs.years.charAt(i),0) !=-1){
             errors.years = 'Cant have leters'
         }
@@ -60,6 +81,11 @@ export default function validation(inputs){
     }
     //Validacion breed_groups
     for (let i=0; i < inputs.breed_group.length; i++){
+        if (signos.indexOf( inputs.breed_group.charAt(i),0) !=-1){
+            errors.breed_group = 'Cant have signs'
+        }
+    }
+    for (let i=0; i < inputs.breed_group.length; i++){
         if (numeros.indexOf( inputs.breed_group.charAt(i),0) !=-1){
             errors.breed_group = 'Cant have numbers'
         }
@@ -71,8 +97,11 @@ export default function validation(inputs){
         errors.breed_group = '*'
     }
     //Validacion temperamentos
+    
     if(inputs.temperament.length < 1){
         errors.temperament = 'You need to select at least one'
     }
+    //TODO QUEEEEEEEEEEEEEEEE?
+    // console.log(inputs.temperament.length)
     return errors;
 }
