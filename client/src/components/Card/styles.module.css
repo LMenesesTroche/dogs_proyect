@@ -10,16 +10,18 @@
   height: 70px;
   border-radius: 100px;
 }
-h2{
-  font-size: 18px;
-}
+
 .detail{
   color: black;
   cursor: pointer;
+  font-size: 20px;
 }
 .detail:hover {
   background-color: #e0d44c;
 }
 a{
   text-decoration: none;
+}
+.h2Card{
+  font-size: 18px;
 }

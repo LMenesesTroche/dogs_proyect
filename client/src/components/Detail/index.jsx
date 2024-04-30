@@ -27,13 +27,11 @@ export default function Detail(){
     return(
         <div className={styles.container}>
             <div className={styles.detailSection}>
-                <h2>Name|{dog.name}</h2>
-                <h2>Height| {dog.height ? dog.height.metric : 'Unknown'}</h2>
-                <h2>Weight| {dog.weight ? dog.weight.metric : 'Unknown'}</h2>
-                <h2>temperament| {dog.temperament}</h2>
-                <h2>Life Span| {dog.life_span ?"Unknown": "Unknown"}</h2>
-
-                
+                <h2 className={styles.h2}>Name|{dog.name}</h2>
+                <h2 className={styles.h2}>Weight| {dog.weight ? dog.weight.metric : 'Unknown'}</h2>
+                <h2 className={styles.h2}>Height| {dog.height ? dog.height.metric : 'Unknown'}</h2>
+                <h2 className={styles.h2}>Temperament| {dog.temperament}</h2>
+                <h2 className={styles.h2}>Life Span| {dog.life_span ?"Unknown": "Unknown"}</h2> 
             </div>
            <div className={styles.imageSection}>
                <img src={dog.image?dog.image:perritoPredeterminado} className={styles.image} alt="Imagen del perro" />           

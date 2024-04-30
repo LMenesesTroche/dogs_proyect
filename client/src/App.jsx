@@ -17,7 +17,6 @@ const URL = 'http://localhost:3001/dogs';
 function App() {
   const dispatch = useDispatch();
   const location = useLocation(); // Obtener la ubicación actual del enrutador
-
   const onSearch = async (id) => {
     const  imagenURL = "https://api.thedogapi.com/v1/images"
     try{
@@ -25,18 +24,19 @@ function App() {
       let response = await  axios(URL + `/raza/${id}`);
       if(response.data.message !== undefined){
         window.alert(response.data.message)
-      }
-      dispatch(deleteAll());
+      }else{
+        dispatch(deleteAll());
       response.data.forEach( async element => {
         if(element){ //mando un objeto a la vez;
           if(element.image){
             let imagenReal = await  axios(imagenURL +`/${element.image}`);
             element.image = imagenReal.data.url;
           }
+          boton = 1;
           dispatch(addRaza(element));
         }
       });
-      
+      }
     }catch(error){
       console.log(error.message);
     }

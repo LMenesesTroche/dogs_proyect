@@ -14,9 +14,9 @@ export default function Card({ id ,image, name, weight, temperament, breed_group
         <Link to={`/detail/${id}`}>
             <h2 className={styles.detail} >{name}</h2>
          </Link>
-        <h2 >{weight}</h2>
-        <h2 >{breed_group}</h2>
-        <h2 >{nuevo}</h2>
+        <h2 className={styles.h2Card}>{weight}</h2>
+        <h2 className={styles.h2Card}>{breed_group}</h2>
+        <h2 className={styles.h2Card}>{nuevo}</h2>
       </div>
    );
 }
