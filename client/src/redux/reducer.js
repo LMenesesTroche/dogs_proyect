@@ -1,9 +1,10 @@
-import { ADD_RAZA, ADD_TEMPERAMENT, DELETE_ALL, ORDER_TEMPERAMENTS, FILTER_BY_ORIGIN, ORDER_BY_ABC } from "./actions";
+import { ADD_RAZA, ADD_TEMPERAMENT, DELETE_ALL, ORDER_TEMPERAMENTS, FILTER_BY_ORIGIN, ORDER_BY_ABC, SET_CURRENT_PAGE } from "./actions";
 
 const initialState = {
     misRazas:[],
     razasOriginales: [], // Almacenar las razas originales
     misTemperamentos:[],
+    myCurrentPage:0,
 }
 
 const rootReducer = (state = initialState, {type, payload}) =>{
@@ -96,7 +97,12 @@ const rootReducer = (state = initialState, {type, payload}) =>{
                     ...state,
                     misRazas: sortedWeight
                 }
-              
+
+            case SET_CURRENT_PAGE:
+            return{
+                ...state,
+                myCurrentPage:payload
+            } 
        
             
         default:

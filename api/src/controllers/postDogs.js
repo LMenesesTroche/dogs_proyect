@@ -8,9 +8,27 @@ async function postDogs(req, res) {
     try {
         //Comprobamos que esten todos los datos
         if ( !name || !height|| !weight || !years || !temperament|| !breed_group) {
-            return res.status(402).send({ message: 'Faltan datos' });
+            return res.status(402).send({ message: 'Missing data' });
         }
-
+        if(typeof name !== 'string' ){
+            return res.status(402).send({ message: 'Error on name' });
+        }
+        if(typeof height !== 'number' ){
+            return res.status(402).send({ message: 'Error on height' });
+        }
+        if(typeof weight !== 'number' ){
+            return res.status(402).send({ message: 'Error on weight' });
+        }
+        if(typeof years !== 'number' ){
+            return res.status(402).send({ message: 'Error on years' });
+        }
+        if(typeof breed_group !== 'string' ){
+            return res.status(402).send({ message: 'Error on breed_group' });
+        }
+        if(!Array.isArray(temperament)){
+            return res.status(402).send({ message: 'Error on temperament' });
+        }
+        
         //Comprobamos que el nombre del perro no este ocupado
         const findDog = await Dog.findOne({ where: { name } });
         if (findDog) {

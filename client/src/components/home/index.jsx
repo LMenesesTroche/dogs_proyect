@@ -3,7 +3,7 @@ import Card from "../Card";
 import styles from "./styles.module.css"
 import { useDispatch } from 'react-redux';
 import { useSelector } from "react-redux";
-import { orderDogsByTemperaments, filterDogsByOrigin, orderByAbc,orderByWeight } from '../../redux/actions';
+import { orderDogsByTemperaments, filterDogsByOrigin, orderByAbc,orderByWeight, setCurrentpage } from '../../redux/actions';
 import perritoPredeterminado from "./perritoPredeterminado.jpg"
 //URL de la API
 const URL = 'http://localhost:3001/dogs';
@@ -16,6 +16,8 @@ export const Home =  ({ getDogs, getTemperaments }) => {
   //Traemos a las razas de mi reducer
   const misRazas = useSelector(state => state.misRazas );
   const misTemperamentos = useSelector(state => state.misTemperamentos );  
+  // const currentPage = useSelector(state => state.myCurrentPage );  
+
     //Usar useEffect para evitar llamados infinitos
     useEffect(()=>{
         getTemperaments();
@@ -23,6 +25,8 @@ export const Home =  ({ getDogs, getTemperaments }) => {
 
   //Items son los datos recortados que se mostraran en la pantalla
   const [items, setItems] = useState([...misRazas].splice(0, itemsPorPagina));
+
+  //Todo comentado de page
   //Esta es la pagina actual en la que estamos
   const [currentPage, setCurrentPage ] = useState(0)
 
@@ -44,6 +48,7 @@ export const Home =  ({ getDogs, getTemperaments }) => {
     if( firstIndex >= totalDeElementos ) return;
     setItems([...misRazas].splice(firstIndex, itemsPorPagina))
     setCurrentPage(nextPage);
+    // dispatch(setCurrentpage(nextPage))
   }
 
   const handlePrev = () =>{
@@ -52,13 +57,17 @@ export const Home =  ({ getDogs, getTemperaments }) => {
     const firstIndex  = prevPage * itemsPorPagina;
     setItems([...misRazas].splice(firstIndex, itemsPorPagina))
     setCurrentPage(prevPage);
+    // dispatch(setCurrentpage(prevPage))
+
   }
   const handleOrderTemperaments = (e)=>{
     setCurrentPage(0);
+    // dispatch(setCurrentpage(0))
     dispatch(orderDogsByTemperaments(e.target.value))
  }
  const handleOrigin = (e) => {
   setCurrentPage(0);
+  // dispatch(setCurrentpage(0))
   dispatch(filterDogsByOrigin(e.target.value))
  }
 
@@ -69,6 +78,7 @@ const [orderData, setOrderData] = useState({
 });
 
 const handleChange1 = (e) => {
+  // dispatch(setCurrentpage(0))
   setCurrentPage(0);
   const { value } = e.target;
   setOrderData(prevState => ({
@@ -78,6 +88,7 @@ const handleChange1 = (e) => {
   dispatch(orderByAbc(value))
 };
 const handleChange2 = (e) => {
+  // dispatch(setCurrentpage(0))
   setCurrentPage(0);
   const { value } = e.target;
   setOrderData(prevState => ({

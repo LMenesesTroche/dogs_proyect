@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Login from './components/Login'
 import { Route, Routes, useLocation ,useNavigate} from 'react-router-dom';
 import { addRaza, addTemperament, deleteAll } from './redux/actions';
+import { setCurrentpage } from './redux/actions';
 import Nav from './components/Nav';
 import Home from './components/home';
 import Detail from './components/Detail';
@@ -20,6 +21,7 @@ function App() {
   const onSearch = async (id) => {
     const  imagenURL = "https://api.thedogapi.com/v1/images"
     try{
+      // dispatch(setCurrentpage(0))
       let response = await  axios(URL + `/raza/${id}`);
       if(response.data.message !== undefined){
         window.alert(response.data.message)
@@ -39,9 +41,7 @@ function App() {
       console.log(error.message);
     }
   }
-  const setCurrentPage = async () => {
-    console.log('llega');
-  }
+  
   const getDogs = async () => {
     const  imagenURL = "https://api.thedogapi.com/v1/images"
     let response = await  axios(URL);
@@ -81,12 +81,13 @@ function App() {
     }
   }
   
+  
 
   return (
     <div className='App'>
           { 
             location.pathname !== '/' ?
-            <Nav onSearch={onSearch} setCurrentPage={setCurrentPage} /> :
+            <Nav onSearch={onSearch}  /> :
             undefined
           }
       <Routes>

@@ -6,6 +6,7 @@ export const ORDER_TEMPERAMENTS = 'ORDER_TEMPERAMENTS';
 export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN';
 export const ORDER_BY_ABC = 'ORDER_BY_ABC';
 export const ORDER_BY_WEIGHT = 'ORDER_BY_WEIGHT';
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 
 
 
@@ -48,5 +49,11 @@ export function orderByWeight(weight){
     return{
         type: ORDER_BY_WEIGHT,
         payload: weight
+    }
+}
+export function setCurrentpage(page){
+    return{
+        type: SET_CURRENT_PAGE,
+        payload: page
     }
 }
