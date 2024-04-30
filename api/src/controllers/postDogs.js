@@ -14,13 +14,13 @@ async function postDogs(req, res) {
         if(typeof name !== 'string' ){
             return res.status(402).send({ message: 'Error on name' });
         }
-        if(typeof height !== 'number' ){
+        if(typeof height !== 'string' ){
             return res.status(402).send({ message: 'Error on height' });
         }
-        if(typeof weight !== 'number' ){
+        if(typeof weight !== 'string' ){
             return res.status(402).send({ message: 'Error on weight' });
         }
-        if(typeof years !== 'number' ){
+        if(typeof years !== 'string' ){
             return res.status(402).send({ message: 'Error on years' });
         }
         if(typeof breed_group !== 'string' ){
@@ -61,7 +61,7 @@ async function postDogs(req, res) {
             }
         }));
 
-        return res.status(201).json({ message: "Datos guardados correctamente" });
+        return res.status(201).json({ message: "Data saved successfully" });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }

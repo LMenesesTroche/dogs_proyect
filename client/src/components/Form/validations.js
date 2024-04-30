@@ -97,11 +97,13 @@ export default function validation(inputs){
         errors.breed_group = '*'
     }
     //Validacion temperamentos
-    
     if(inputs.temperament.length < 1){
         errors.temperament = 'You need to select at least one'
     }
-    //TODO QUEEEEEEEEEEEEEEEE?
-    // console.log(inputs.temperament.length)
+    // if(inputs.temperament.length > 5){
+    //     errors.temperament = 'Too many temperaments'
+    // }
+    
+
     return errors;
 }
