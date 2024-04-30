@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Login from './components/Login'
 import { Route, Routes, useLocation ,useNavigate} from 'react-router-dom';
 import { addRaza, addTemperament, deleteAll } from './redux/actions';
-import { setCurrentpage } from './redux/actions';
+import { setSignal } from './redux/actions';
 import Nav from './components/Nav';
 import Home from './components/home';
 import Detail from './components/Detail';
@@ -26,13 +26,13 @@ function App() {
         window.alert(response.data.message)
       }else{
         dispatch(deleteAll());
-      response.data.forEach( async element => {
+        dispatch(setSignal(1));
+        response.data.forEach( async element => {
         if(element){ //mando un objeto a la vez;
           if(element.image){
             let imagenReal = await  axios(imagenURL +`/${element.image}`);
             element.image = imagenReal.data.url;
           }
-          boton = 1;
           dispatch(addRaza(element));
         }
       });

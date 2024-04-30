@@ -3,7 +3,7 @@ import Card from "../Card";
 import styles from "./styles.module.css"
 import { useDispatch } from 'react-redux';
 import { useSelector } from "react-redux";
-import { orderDogsByTemperaments, filterDogsByOrigin, orderByAbc,orderByWeight, setCurrentpage } from '../../redux/actions';
+import { orderDogsByTemperaments, filterDogsByOrigin, orderByAbc,orderByWeight, setSignal } from '../../redux/actions';
 import perritoPredeterminado from "./perritoPredeterminado.jpg"
 //URL de la API
 const URL = 'http://localhost:3001/dogs';
@@ -16,7 +16,9 @@ export const Home =  ({ getDogs, getTemperaments }) => {
   //Traemos a las razas de mi reducer
   const misRazas = useSelector(state => state.misRazas );
   const misTemperamentos = useSelector(state => state.misTemperamentos );  
-  // const currentPage = useSelector(state => state.myCurrentPage );  
+  const signal = useSelector(state => state.myCurrentPage );  
+  
+
 
     //Usar useEffect para evitar llamados infinitos
     useEffect(()=>{
@@ -30,6 +32,12 @@ export const Home =  ({ getDogs, getTemperaments }) => {
   //Esta es la pagina actual en la que estamos
   const [currentPage, setCurrentPage ] = useState(0)
 
+
+  //Recibimos la signal y si esta esta en uno quiere decir que debemos poner la pagina en 0
+  if(signal === 1){
+    setCurrentPage(0) 
+    dispatch(setSignal(0))
+  }
   //Traemos los perros al front
   useEffect(()=>{
     getDogs();

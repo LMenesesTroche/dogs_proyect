@@ -51,7 +51,7 @@ export function orderByWeight(weight){
         payload: weight
     }
 }
-export function setCurrentpage(page){
+export function setSignal(page){
     return{
         type: SET_CURRENT_PAGE,
         payload: page

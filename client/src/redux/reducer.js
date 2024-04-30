@@ -99,6 +99,7 @@ const rootReducer = (state = initialState, {type, payload}) =>{
                 }
 
             case SET_CURRENT_PAGE:
+                console.log(payload)
             return{
                 ...state,
                 myCurrentPage:payload
