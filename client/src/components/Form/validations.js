@@ -100,9 +100,8 @@ export default function validation(inputs){
     if(inputs.temperament.length < 1){
         errors.temperament = 'You need to select at least one'
     }
-    // if(inputs.temperament.length > 5){
-    //     errors.temperament = 'Too many temperaments'
-    // }
+    
+    
     
 
     return errors;

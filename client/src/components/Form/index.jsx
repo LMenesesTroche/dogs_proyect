@@ -48,17 +48,18 @@ export default function Form({ postDog, getTemperaments}){
             temperament:[],
         }));
         dispatch(setSignal(0))
-        console.log(signal)
     }
     //Lo que pasa despues de  oprimir submit
     const handlerSubmit = (event) =>{
         event.preventDefault();
-        
-        if(errors.name||errors.height||errors.weight||errors.years||errors.temperament||errors.breed_group){
-            alert("Form has errors")
+        if(dogData.temperament.length > 5){
+            alert("Too many selected temperaments")
         }else{
-            postDog(dogData);
-            
+            if(errors.name||errors.height||errors.weight||errors.years||errors.temperament||errors.breed_group){
+                alert("Form has errors")
+            }else{
+                postDog(dogData);
+            }
         }
     }
     //Esto esta pasando mientras se va escribiendo en el form
