@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import styles from './styles.module.css'
-// import { useDispatch } from 'react-redux';
-// import { setCurrentpage } from '../../redux/actions';
+import {Link} from 'react-router-dom'
 
 const  SearchBar = ({ onSearch, setCurrentPage}) => {
-   // const dispatch = useDispatch();
+
    const [id, setId] = useState('')
   
    const handleClick = () =>{//(Lo que pasa cuando hacemos click)
@@ -15,7 +14,7 @@ const  SearchBar = ({ onSearch, setCurrentPage}) => {
    const handleChange = ({ target }) =>{//(Lo que pasa cuando cambiamos el input)
       setId(target.value);
    }
-
+//lol
    return(
       <div className={styles.ContainerNav}>
          <input 
@@ -24,7 +23,9 @@ const  SearchBar = ({ onSearch, setCurrentPage}) => {
             type='search'
             placeholder='Search breed'>
          </input>
+         <Link to={`/home`}>
          <button  onClick={handleClick} className={styles.Button}>Search</button>
+          </Link>
       </div>
    )
    
