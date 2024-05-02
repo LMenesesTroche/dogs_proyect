@@ -2,7 +2,7 @@ export default function validation(inputs){
     const errors = {};
     var numeros = "0123456789";
     var letras = "abcdefghyjklmnñopqrstuvwxyzQWERTYUIOPLKJHGFDSAZXCVBNM";
-    var signos= "~!@#$%^&*()-=_`':+}{[]|:?><,./\;"
+    var signos= "~!@#$%^&*()-=_`':+}{[]|:?><,/\;"
 
     // Validacion nombre
     //IndexOf devuelve la poscicion en el array de lo que le mandes

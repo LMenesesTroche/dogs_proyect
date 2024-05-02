@@ -22,6 +22,7 @@ const rootReducer = (state = initialState, {type, payload}) =>{
             }
         case DELETE_ALL:
             return{
+                ...state,
                 misRazas:[],
                 razasOriginales: [], // Limpiar las razas originales
             }

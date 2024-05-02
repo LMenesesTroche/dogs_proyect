@@ -14,10 +14,12 @@
 .form{
     display: flex;
     flex-direction: column;
+    background-color: blue;
 }
 .arriba{
     display: flex;
     flex-direction: row;
+    background-color: blueviolet;
 }
 .inputForm{
     color:rgb(0, 0, 0);
@@ -30,13 +32,17 @@
 }
 .primero{
     width: 200px;
-    height: auto;
+    height: 300px;
+    background-color: aqua;
 }
 .segundo{
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    display: flex;
+    justify-content:center;
+    align-items:center;
     width: 300px;
-    height: auto;
+    height: 300px;
+    background-color: #d8c534;
 }
 .button{
     padding: 15px 20px;
@@ -52,4 +58,7 @@
     /* font-size: 17px; */
     margin-top: 7px;
     
+}
+.aclaraciones{
+    font-size: 13px;
 }

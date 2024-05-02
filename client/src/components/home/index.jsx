@@ -31,8 +31,6 @@ export const Home =  ({ getDogs, getTemperaments }) => {
   //Todo comentado de page
   //Esta es la pagina actual en la que estamos
   const [currentPage, setCurrentPage ] = useState(0)
-
-
   //Recibimos la signal y si esta esta en uno quiere decir que debemos poner la pagina en 0
   if(signal === 1){
     setCurrentPage(0) 
@@ -59,7 +57,7 @@ export const Home =  ({ getDogs, getTemperaments }) => {
     // dispatch(setCurrentpage(nextPage))
   }
 
-  const handlePrev = () =>{
+  const handlePrev = () =>{ 
     const prevPage = currentPage -1;
     if(prevPage < 0) return;
     const firstIndex  = prevPage * itemsPorPagina;
@@ -78,7 +76,6 @@ export const Home =  ({ getDogs, getTemperaments }) => {
   // dispatch(setCurrentpage(0))
   dispatch(filterDogsByOrigin(e.target.value))
  }
-
 //Info del ordenamiento
 const [orderData, setOrderData] = useState({
   typeOfOrder: '',

@@ -27,7 +27,7 @@ async function getTemperaments(req,res){
                 })
             }
         });
-        const dbTemperamentos = await Temperaments.findAll(); 
+        const dbTemperamentos = await Temperaments.findAll({order: [['name','ASC']]}); 
         res.status(200).json(dbTemperamentos);
 
     }catch(error){

@@ -144,6 +144,7 @@ export default function Form({ postDog, getTemperaments}){
                     </div>
                     <div className={styles.segundo}>
                         <label>Temperament</label>
+                        <label className={styles.aclaraciones}>Press control to select multiple options</label>
                         {errors.temperament && <span className={style.warning}>{errors.temperament}</span>}
                         <select multiple onChange={handleChange} name='temperament' className={styles.seleccionMultiple}>
                             {misTemperamentos? misTemperamentos.map((element,index)=>(
