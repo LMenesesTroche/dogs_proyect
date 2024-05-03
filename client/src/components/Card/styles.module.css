@@ -1,10 +1,54 @@
 .container {
+  display: flex;
+  flex-direction: column;
   width: 280px;
   height: 300px;
   border-radius: 20px;
   background-color: rgba(255, 255, 255, 0.658);
   margin: 8px;
+  color: black;
   }
+
+.contendorDetail{
+  display: flex;
+  flex-direction: row;
+}
+.contenedorIzquierdo{
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+  /* background-color: aqua; */
+  font-size: 10px;
+  color: black;
+  width: 37%;
+  height: 220px;
+
+}
+.contenedorCentralDeLineas{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center ;
+  width: 3%;
+  color: black ;
+  font-size: 10px;
+  /* background-color: aliceblue; */
+  height: 220px;
+
+}
+.contenedorDerecho{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:space-between;
+  height: 220px;
+  /* background-color: blueviolet; */
+  
+}
+.contenedorDeTextoQueNoEsTemperaments{
+  height: 75%;
+}
 .img {
   width: auto;
   height: 70px;
@@ -14,7 +58,7 @@
 .detail{
   color: black;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 18px;
 }
 .detail:hover {
   background-color: #e0d44c;
@@ -22,6 +66,36 @@
 a{
   text-decoration: none;
 }
-.h2Card{
-  font-size: 18px;
+.name{
+  height: 25%;
+  font-size: 15px;
+  color: black;
+  
+}
+.weight{
+  height: 25%;
+  font-size: 15px;
+  color: black;
+}
+.breed_group{
+  height: 25%;
+  font-size: 15px;
+  color: black;
+}
+.temperamentos{
+  font-size: 13px;
+  color: black;
+}
+.contenedorDeTemperamentos{
+  height: 25%;
+  width: 150px;
+  /* background-color: aquamarine; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.textoIndicativo{
+  height: 50%;
+}
+.lineas{
+  height: 70%;
 }

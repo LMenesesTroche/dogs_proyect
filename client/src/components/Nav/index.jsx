@@ -7,8 +7,10 @@ const Nav = ({  onSearch, getDogs }) => {
   return (
     <>
         <div className={styles.container}>
+          <Link to={`/home`}>
           <img src={image} className={styles.imagen} alt="Imagen de perrito"/>
-            <Link to={`/home`}>
+          </Link>
+          <Link to={`/home`}>
               <button className={styles.button}>Home</button>
           </Link>
           <Link to={`/form`}>
