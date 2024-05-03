@@ -1,5 +1,6 @@
 const axios = require("axios");
 const { Dog, Temperaments } = require("../db");
+const { Sequelize } = require('sequelize');
 
 
 async function postDogs(req, res) {
@@ -31,7 +32,8 @@ async function postDogs(req, res) {
         }
         
         //Comprobamos que el nombre del perro no este en uso
-        const findDog = await Dog.findOne({ where: { name } });
+        const nameMinusculas = name.toLowerCase();
+        const findDog = await Dog.findOne({  where: { name: Sequelize.where(Sequelize.fn('LOWER',Sequelize.col('name')),nameMinusculas) }});
         if (findDog) {
             return res.status(200).json({ message: "The dog's name already exists"});
         }
