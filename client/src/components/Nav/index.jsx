@@ -3,7 +3,7 @@ import SearchBar from "../SearchBar/index";
 import {Link} from 'react-router-dom'
 import styles from './styles.module.css'
 import image from './logoPatitas.jpg'
-const Nav = ({  onSearch }) => {
+const Nav = ({  onSearch, getDogs }) => {
   return (
     <>
         <div className={styles.container}>
@@ -14,7 +14,7 @@ const Nav = ({  onSearch }) => {
           <Link to={`/form`}>
               <button className={styles.button}>Form</button>
           </Link>
-            <SearchBar onSearch={onSearch} />
+            <SearchBar onSearch={onSearch} getDogs={getDogs} />
         </div>
     </>
   );

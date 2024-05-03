@@ -46,6 +46,7 @@ function App() {
     const  imagenURL = "https://api.thedogapi.com/v1/images"
     let response = await  axios(URL);
     try{
+      dispatch(deleteAll());
       response.data.forEach( async element => {
         if(element){ //mando un objeto a la vez;
           if(element.image){
@@ -89,7 +90,7 @@ function App() {
     <div className='App'>
           { 
             location.pathname !== '/' ?
-            <Nav onSearch={onSearch}  /> :
+            <Nav onSearch={onSearch} getDogs={getDogs} /> :
             undefined
           }
       <Routes>

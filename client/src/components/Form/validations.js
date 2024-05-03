@@ -7,13 +7,14 @@ export default function validation(inputs){
     // Validacion nombre
     //IndexOf devuelve la poscicion en el array de lo que le mandes
     for (let i=0; i < inputs.name.length; i++){
+        //si tenemos algo de numeros en nombre mandar error
         if (numeros.indexOf( inputs.name.charAt(i),0) !=-1){
-            errors.name = 'Cant have numbers'
+            errors.name = 'Can not have numbers'
         }
     }
     for (let i=0; i < inputs.name.length; i++){
         if (signos.indexOf( inputs.name.charAt(i),0) !=-1){
-            errors.name = 'Cant have signs'
+            errors.name = 'Can not have signs'
         }
     }
     if(inputs.name.length > 15){

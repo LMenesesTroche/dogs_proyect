@@ -5,6 +5,7 @@ import style from './styles.module.css';
 import { useSelector } from "react-redux";
 import { setSignal } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
+import {Link} from 'react-router-dom'
 
 const URL = 'http://localhost:3001/dogs';
 
@@ -77,7 +78,7 @@ export default function Form({ postDog, getTemperaments}){
                 [name]:value
             }));
         }
-
+        //Mandamos los datos a validacion
         setErrors(validation({
           ...dogData,
           [name]: value
@@ -89,11 +90,12 @@ export default function Form({ postDog, getTemperaments}){
     return(
         <div className={styles.container} onSubmit={handlerSubmit}>
             <h1>Create your dog!</h1>
-            <label> (*) Means it cannot be empty</label>
 
             <form className={styles.form} id="formul">
                 <div className={styles.arriba}>
-                    <div className={styles.primero}>    
+                    <div className={styles.primero}> 
+                        <label className={styles.aclaraciones}> (*) Means it cannot be empty</label>
+                        <p></p>
                         <label>Name</label>
                         {errors.name && <span className={style.warning}>{errors.name}</span>}
                         <input 
@@ -153,8 +155,13 @@ export default function Form({ postDog, getTemperaments}){
                         </select>    
                     </div>       
                 </div>
-                <div className={styles.abajo}>
-                    <button className={styles.button}type='submit'>Submit</button>
+                <div className={styles.ultimaSeccion}>
+                    <Link to={`/home`}>
+                        <button className={styles.button}>Cancel</button>
+                    </Link>
+                    <div className={styles.abajo}>
+                        <button className={styles.button}type='submit'>Submit</button>
+                    </div>
                 </div>
             </form>
         </div>

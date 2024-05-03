@@ -12,40 +12,33 @@ const itemsPorPagina = 8;
 
 export const Home =  ({ getDogs, getTemperaments }) => {
   const dispatch = useDispatch();
-
-  //Traemos a las razas de mi reducer
   const misRazas = useSelector(state => state.misRazas );
   const misTemperamentos = useSelector(state => state.misTemperamentos );  
   const signal = useSelector(state => state.myCurrentPage );  
-  
-
-
-    //Usar useEffect para evitar llamados infinitos
-    useEffect(()=>{
-        getTemperaments();
-    },[])
-
-  //Items son los datos recortados que se mostraran en la pantalla
+  const [currentPage, setCurrentPage ] = useState(0)
   const [items, setItems] = useState([...misRazas].splice(0, itemsPorPagina));
 
-  //Todo comentado de page
-  //Esta es la pagina actual en la que estamos
-  const [currentPage, setCurrentPage ] = useState(0)
-  //Recibimos la signal y si esta esta en uno quiere decir que debemos poner la pagina en 0
-  if(signal === 1){
-    setCurrentPage(0) 
-    dispatch(setSignal(0))
-  }
-  //Traemos los perros al front
+  useEffect(()=>{
+    getTemperaments();
+  },[])
+
   useEffect(()=>{
     getDogs();
   },[])
 
-    // Actualizamos los items cuando misRazas cambien
-    useEffect(() => {
+  useEffect(() => {
     setItems([...misRazas].splice(currentPage * itemsPorPagina, itemsPorPagina));
   },[misRazas, currentPage]);
   
+  if(signal === 1){
+    setCurrentPage(0) 
+    dispatch(setSignal(0))
+  }
+
+  const [orderData, setOrderData] = useState({
+    typeOfOrder: '',
+    acdc: '',
+  });
   
   const handleNext = () =>{
     const totalDeElementos = misRazas.length;
@@ -54,7 +47,6 @@ export const Home =  ({ getDogs, getTemperaments }) => {
     if( firstIndex >= totalDeElementos ) return;
     setItems([...misRazas].splice(firstIndex, itemsPorPagina))
     setCurrentPage(nextPage);
-    // dispatch(setCurrentpage(nextPage))
   }
 
   const handlePrev = () =>{ 
@@ -63,47 +55,39 @@ export const Home =  ({ getDogs, getTemperaments }) => {
     const firstIndex  = prevPage * itemsPorPagina;
     setItems([...misRazas].splice(firstIndex, itemsPorPagina))
     setCurrentPage(prevPage);
-    // dispatch(setCurrentpage(prevPage))
-
   }
+
   const handleOrderTemperaments = (e)=>{
     setCurrentPage(0);
-    // dispatch(setCurrentpage(0))
     dispatch(orderDogsByTemperaments(e.target.value))
- }
- const handleOrigin = (e) => {
-  setCurrentPage(0);
-  // dispatch(setCurrentpage(0))
-  dispatch(filterDogsByOrigin(e.target.value))
- }
-//Info del ordenamiento
-const [orderData, setOrderData] = useState({
-  typeOfOrder: '',
-  acdc: '',
-});
+  }
+  
+  const handleOrigin = (e) => {  
+    setCurrentPage(0);
+    dispatch(filterDogsByOrigin(e.target.value))
+  }
 
-const handleChange1 = (e) => {
-  // dispatch(setCurrentpage(0))
-  setCurrentPage(0);
-  const { value } = e.target;
-  setOrderData(prevState => ({
-    ...prevState,
-    typeOfOrder: value
-  }));
-  dispatch(orderByAbc(value))
-};
-const handleChange2 = (e) => {
-  // dispatch(setCurrentpage(0))
-  setCurrentPage(0);
-  const { value } = e.target;
-  setOrderData(prevState => ({
-    ...prevState,
-    typeOfOrder: value
-  }));
-  dispatch(orderByWeight(value))
-};
+  const handleOrderABC = (e) => {
+    setCurrentPage(0);
+    const { value } = e.target;
+    setOrderData(prevState => ({
+      ...prevState,
+      typeOfOrder: value
+    }));
+    dispatch(orderByAbc(value))
+  };
+
+  const handleWeightOrder = (e) => {
+    setCurrentPage(0);
+    const { value } = e.target;
+    setOrderData(prevState => ({
+      ...prevState,
+      typeOfOrder: value
+    }));
+    dispatch(orderByWeight(value))
+  };
+
   return ( 
-    
     <div className={styles.container}>
       <div className={styles.filtrosYOrdenamientos}>
         <div >
@@ -117,25 +101,27 @@ const handleChange2 = (e) => {
         </div>  
         <div>
           <label>Filter by origin</label>
-          <select onChange={handleOrigin} name='origin' className={styles.sleccionMultiple}>
+          <select onChange={handleOrigin} name='origin' className={styles.sleccionMultiple} defaultValue="all">
             <option value={"api"}>API</option>
             <option value={"dataBase"}>Data Base</option>
-            <option value={"all"}>All</option>
+            <option key={1000} value={"all"}>All</option>
           </select>
         </div>
 
         <div>
           <label>Alphabetical order</label>
-            <select onChange={handleChange1} name='typeOfOrder' className={styles.sleccionMultiple}>
+            <select onChange={handleOrderABC} name='typeOfOrder' className={styles.sleccionMultiple} defaultValue="None">
               <option value={"asc"}>Asc</option>
               <option value={"dsc"}>Dsc</option>
+              <option value={"None"}>None</option>
             </select>
         </div>
         <div>
           <label>Weight order</label>
-          <select onChange={handleChange2} name='weightOrder' className={styles.sleccionMultiple}>
+          <select onChange={handleWeightOrder} name='weightOrder' className={styles.sleccionMultiple} defaultValue="None">
             <option value={"asc"}>Asc</option>
             <option  value={"dsc"}> Dsc</option>
+            <option  value={"None"}> None</option>
           </select>
         </div>
       </div>

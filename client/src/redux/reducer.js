@@ -42,18 +42,19 @@ const rootReducer = (state = initialState, {type, payload}) =>{
                 : state.razasOriginales // Si payload es 'all', devolver todas las razasOriginales sin filtrar
 
             } 
+            //todo revisar
             case ORDER_BY_ABC:
                 const sortedArr = payload === 'asc' ?
                 [...state.misRazas].sort(function (a, b) {
                     if (a.name > b.name) { return 1 }
                     if (b.name > a.name) { return -1 }
                     return 0;
-                }) :
+                }) : payload === 'dsc' ?
                 [...state.misRazas].sort(function (a, b) {
                     if (a.name > b.name) { return -1; }
                     if (b.name > a.name) { return 1; }
                     return 0;
-                })
+                }) : state.razasOriginales
             return {
                 ...state,
                 misRazas: sortedArr
@@ -87,12 +88,12 @@ const rootReducer = (state = initialState, {type, payload}) =>{
                         const weightB = pesoPromedio(b.weight);
                         return weightA - weightB;
                       })
-                    :
+                    :  payload === 'dsc' ?
                     [...state.misRazas].sort((a, b) => {
                         const weightA = pesoPromedio(a.weight);
                         const weightB = pesoPromedio(b.weight);
                         return weightB - weightA;
-                      })
+                    }): state.razasOriginales
                 
                 return {
                     ...state,
