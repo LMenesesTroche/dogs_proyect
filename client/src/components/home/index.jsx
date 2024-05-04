@@ -22,9 +22,12 @@ export const Home =  ({ getDogs, getTemperaments }) => {
     getTemperaments();
   },[])
 
-  useEffect(()=>{
-    getDogs();
-  },[])
+    useEffect(()=>{
+      if(misRazas.length === 0){
+        getDogs();
+      }
+    },[])
+  
 
   useEffect(() => {
     setItems([...misRazas].splice(currentPage * itemsPorPagina, itemsPorPagina));
