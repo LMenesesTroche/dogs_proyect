@@ -4,12 +4,14 @@ import { useParams } from 'react-router-dom';
 import perritoPredeterminado from "./perritoPredeterminado.jpg"
 import styles from './styles.module.css'
 import {Link} from 'react-router-dom'
+import { useDispatch } from 'react-redux';
 
 const URL = 'http://localhost:3001/dogs';
 const  imagenURL = "https://api.thedogapi.com/v1/images/"
 
-export default function Detail(){
-    
+export default function Detail({ deleteDog }){
+    const dispatch = useDispatch();
+
     const { id } = useParams();
     const [dog, setDog] = useState({});
     
@@ -26,7 +28,11 @@ export default function Detail(){
         });
         return setDog({});
      }, [id]);
-     
+    
+    const handleDelete = () => {
+        deleteDog(id);
+     }
+    console.log(dog)
     return(
         <div className={styles.container}>
             <div className={styles.infoEImagen}>
@@ -43,7 +49,10 @@ export default function Detail(){
             </div>
             <div className={styles.boton}>
                 <Link to={`/home`}>
+                    {dog.fromDataBase && <button onClick={handleDelete}className={styles.buttonDelete}>DELETE DOG</button> }
+
                     <button className={styles.Button}>Go back</button>
+
                 </Link>
             </div>
         </div>

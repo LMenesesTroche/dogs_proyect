@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Login from './components/Login'
 import { Route, Routes, useLocation ,useNavigate} from 'react-router-dom';
-import { addRaza, addTemperament, deleteAll } from './redux/actions';
+import { addRaza, addTemperament, deleteAll, deleteDogRedux } from './redux/actions';
 import { setSignal } from './redux/actions';
 import Nav from './components/Nav';
 import Home from './components/home';
@@ -61,6 +61,16 @@ function App() {
     }
   }
 
+  const deleteDog = async (props) => {
+    try{
+      let response = await axios.delete(`${URL}/delete/${props}`);
+      window.alert(response.data.message)
+    }catch(error){ 
+      console.log(error.message);
+    }
+    dispatch(deleteDogRedux(props))
+}
+
   const postDog = async (props) => {
     try{
       let response = await axios.post(URL, props);
@@ -106,7 +116,7 @@ function App() {
         } />
 
         <Route path='/detail/:id' element={
-          <Detail/>
+          <Detail deleteDog={deleteDog}/>
         } />
         
         <Route path='/form/' element={

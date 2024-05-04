@@ -7,6 +7,7 @@ export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN';
 export const ORDER_BY_ABC = 'ORDER_BY_ABC';
 export const ORDER_BY_WEIGHT = 'ORDER_BY_WEIGHT';
 export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+export const DELETE_DOG = 'DELETE_DOG';
 
 
 
@@ -55,5 +56,11 @@ export function setSignal(page){
     return{
         type: SET_CURRENT_PAGE,
         payload: page
+    }
+}
+export function deleteDogRedux(id){
+    return{
+        type: DELETE_DOG,
+        payload: id
     }
 }

@@ -1,4 +1,4 @@
-import { ADD_RAZA, ADD_TEMPERAMENT, DELETE_ALL, ORDER_TEMPERAMENTS, FILTER_BY_ORIGIN, ORDER_BY_ABC, SET_CURRENT_PAGE } from "./actions";
+import { ADD_RAZA, ADD_TEMPERAMENT, DELETE_ALL, ORDER_TEMPERAMENTS, FILTER_BY_ORIGIN, ORDER_BY_ABC, SET_CURRENT_PAGE, DELETE_DOG } from "./actions";
 
 const initialState = {
     misRazas:[],
@@ -102,10 +102,18 @@ const rootReducer = (state = initialState, {type, payload}) =>{
 
             case SET_CURRENT_PAGE:
                 console.log(payload)
-            return{
-                ...state,
-                myCurrentPage:payload
-            } 
+                return{
+                    ...state,
+                    myCurrentPage:payload
+                } 
+            case DELETE_DOG:
+                return{
+                    ...state,
+                    //Convertir "misRazas" a un filtrado de mis razas originales
+                    razasOriginales:  state.razasOriginales.filter((perro)=>perro.id !== payload),
+                    misRazas:  state.razasOriginales.filter((perro)=>perro.id !== payload)
+
+                } 
        
             
         default:

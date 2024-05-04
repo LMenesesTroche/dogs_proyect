@@ -7,6 +7,7 @@ const getTemperaments = require('../controllers/getTemperaments');
 const getById = require('../controllers/getById');
 const getByRaza = require('../controllers/getByRaza');
 const getImagenes = require('../controllers/getImagenes');
+const deleteDog = require('../controllers/deleteDog');
 
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -29,13 +30,6 @@ myRouter.get('/dogs/raza/:raza',getByRaza);
 
 myRouter.get('/dogs/images/:img',getImagenes); 
 
-
-
-
-
-
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
-
+myRouter.delete('/dogs/delete/:Id',deleteDog); 
 
 module.exports = myRouter;
