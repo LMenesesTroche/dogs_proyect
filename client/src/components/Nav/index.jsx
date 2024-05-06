@@ -16,6 +16,10 @@ const Nav = ({  onSearch, getDogs }) => {
           <Link to={`/form`}>
               <button className={styles.button}>Form</button>
           </Link>
+          <Link to={`/`}>
+              <button className={styles.buttonOut}>LogOut</button>
+          </Link>
+          
             <SearchBar onSearch={onSearch} getDogs={getDogs} />
         </div>
     </>

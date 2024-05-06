@@ -38,10 +38,10 @@ export default function Detail({ deleteDog }){
             <div className={styles.infoEImagen}>
                 <div className={styles.detailSection}>
                     <h2 className={styles.h2}>Name| {dog.name}</h2>
-                    <h2  className={styles.h2}>Weight| {dog.weight && dog.weight.metric ? dog.weight.metric  : dog.weight ? dog.weight : "Unknown"}</h2>
-                    <h2  className={styles.h2}>Height| {dog.height && dog.height.metric ? dog.height.metric  : dog.height ? dog.height : "Unknown"}</h2>
+                    <h2  className={styles.h2}>Weight| {dog.weight && dog.weight.metric ? `${dog.weight.metric} kg`  : dog.weight ? `${dog.weight} kg` : "Unknown"}</h2>
+                    <h2  className={styles.h2}>Height| {dog.height && dog.height.metric ? `${dog.height.metric} cm`  : dog.height ? `${dog.height} cm` : "Unknown"}</h2>
                     <h2 className={styles.h2}>Temperament| {dog.temperament}</h2>
-                    <h2 className={styles.h2}>Life Span| {dog.life_span ?"Unknown": "Unknown"}</h2> 
+                    <h2 className={styles.h2}>Life Span| {dog.life_span ? `${dog.life_span}` : "Unknown"}</h2> 
                 </div>
                 <div className={styles.imageSection}>
                     <img src={dog.image?dog.image:perritoPredeterminado} className={styles.image} alt="Imagen del perro" />           

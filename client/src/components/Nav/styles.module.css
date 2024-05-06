@@ -30,7 +30,19 @@
     border-radius: 8px;
     font-weight: 550;
     /* font-size: 17px; */
-    
+}
+.buttonOut{
+  padding: 15px 15px;
+    /* color de fondo */
+    background-color: #e0d44c;
+    /* color de las letras */
+    color: rgb(54, 54, 54);
+    /* quitar borde */
+    border:none;
+    /* borde redondeado */
+    border-radius: 8px;
+    font-weight: 550;
+    /* font-size: 17px; */
 }
 .button:hover{
   background-color: #b9a92f;

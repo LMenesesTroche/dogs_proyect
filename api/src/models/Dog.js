@@ -20,8 +20,8 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    years: {
-      type: DataTypes.INTEGER,
+    life_span: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     breed_group: {

@@ -1,6 +1,16 @@
-const [currentPage, setCurrentPage ] = useState(0)
+/*
+Otros equivalentes a useEffect serian:
+Uselayouteffect, useCallBakc, usememo, useRef etc
 
-useEffect(() => {
-    setItems([...misRazas].splice(currentPage * itemsPorPagina, itemsPorPagina));
-  },[misRazas, currentPage]);
-  
+
+
+
+
+
+
+
+
+
+
+
+*/

@@ -17,26 +17,27 @@ export const Home =  ({ getDogs, getTemperaments }) => {
   const signal = useSelector(state => state.myCurrentPage );  
   const [currentPage, setCurrentPage ] = useState(0)
   const [items, setItems] = useState([...misRazas].splice(0, itemsPorPagina));
+  
+  useEffect(()=>{
+    if(misRazas.length === 0){
+      getDogs();
+    }
+  },[])
 
   useEffect(()=>{
     getTemperaments();
   },[])
 
-    useEffect(()=>{
-      if(misRazas.length === 0){
-        getDogs();
-      }
-    },[])
   
 
   useEffect(() => {
     setItems([...misRazas].splice(currentPage * itemsPorPagina, itemsPorPagina));
   },[misRazas, currentPage]);
   
-  if(signal === 1){
-    setCurrentPage(0) 
-    dispatch(setSignal(0))
-  }
+    if (signal === 1) {
+        setCurrentPage(0);
+        dispatch(setSignal(0));
+    }
 
   const [orderData, setOrderData] = useState({
     typeOfOrder: '',
@@ -95,7 +96,7 @@ export const Home =  ({ getDogs, getTemperaments }) => {
       <div className={styles.filtrosYOrdenamientos}>
         <div >
           <label>Filter by temperament</label>
-          <select onChange={handleOrderTemperaments} name='temperament' className={styles.sleccionMultiple}>
+          <select onChange={handleOrderTemperaments} name='temperament' className={styles.sleccionMultiple} defaultValue="all">
             {misTemperamentos? misTemperamentos.map((element,index)=>(
                 <option key={index} value={element}>{element}</option>
             )):null}       

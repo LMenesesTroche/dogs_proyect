@@ -23,6 +23,7 @@ async function getByRaza(req,res){
                     image:x.reference_image_id,
                     name: x.name,
                     temperament:x.temperament,
+                    breed_group:x.breed_group,
                     weight:x.weight.imperial
                 }  
             }

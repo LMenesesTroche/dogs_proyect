@@ -2,7 +2,9 @@ export default function validation(inputs){
     const errors = {};
     var numeros = "0123456789";
     var letras = "abcdefghyjklmnñopqrstuvwxyzQWERTYUIOPLKJHGFDSAZXCVBNM";
-    var signos= "~!@#$%^&*()-=_`':+}{[]|:?><,/\;"
+    var signos= "~!@#$%^&*()=_`-':+}{[]|:?><,./\;"
+    var signosParaYears = "~!@#$%^&*()=_`':+}{[]|:?><,./\;"
+
 
     // Validacion nombre
     //IndexOf devuelve la poscicion en el array de lo que le mandes
@@ -64,21 +66,16 @@ export default function validation(inputs){
     }
 
     //Validacion años de Vida
-    for (let i=0; i < inputs.years.length; i++){
-        if (signos.indexOf( inputs.years.charAt(i),0) !=-1){
-            errors.years = 'Cant have signs'
+    for (let i=0; i < inputs.life_span.length; i++){
+        if (signosParaYears.indexOf( inputs.life_span.charAt(i),0) !=-1){
+            errors.life_span = 'Cant have signs'
         }
     }
-    for (let i=0; i < inputs.years.length; i++){
-        if (letras.indexOf( inputs.years.charAt(i),0) !=-1){
-            errors.years = 'Cant have leters'
-        }
+    if(inputs.life_span.length > 15){
+        errors.life_span = 'Too long'
     }
-    if(inputs.years > 20){
-        errors.years = 'Too old'
-    }
-    if(!inputs.years){
-        errors.years = '*'
+    if(!inputs.life_span){
+        errors.life_span = '*'
     }
     //Validacion breed_groups
     for (let i=0; i < inputs.breed_group.length; i++){

@@ -25,7 +25,7 @@ export default function Form({ postDog, getTemperaments}){
         name: '',
         height: '',
         weight: '',
-        years: '',
+        life_span: '',
         breed_group: '',
         temperament:[],
     });
@@ -34,7 +34,7 @@ export default function Form({ postDog, getTemperaments}){
         name: '',
         height: '',
         weight: '',
-        years: '',
+        life_span: '',
         breed_group:'',
         temperament:[],
     });
@@ -44,7 +44,7 @@ export default function Form({ postDog, getTemperaments}){
             name: '',
             height: '',
             weight: '',
-            years: '',
+            life_span: '',
             breed_group: '',
             temperament:[],
         }));
@@ -56,7 +56,7 @@ export default function Form({ postDog, getTemperaments}){
         if(dogData.temperament.length > 5){
             alert("Too many selected temperaments")
         }else{
-            if(errors.name||errors.height||errors.weight||errors.years||errors.temperament||errors.breed_group){
+            if(errors.name||errors.height||errors.weight||errors.life_span||errors.temperament||errors.breed_group){
                 alert("Form has errors")
             }else{
                 postDog(dogData);
@@ -94,7 +94,7 @@ export default function Form({ postDog, getTemperaments}){
             <form className={styles.form} id="formul">
                 <div className={styles.arriba}>
                     <div className={styles.primero}> 
-                        <label className={styles.aclaraciones}> (*) Means it cannot be empty</label>
+                        <label className={styles.aclaracionesAterisco}> (*) Means it cannot be empty</label>
                         <p></p>
                         <label>Name</label>
                         {errors.name && <span className={style.warning}>{errors.name}</span>}
@@ -126,12 +126,12 @@ export default function Form({ postDog, getTemperaments}){
                         onChange={handleChange}
                         />
 
-                        <label>Years old</label>
-                        {errors.years && <span className={style.warning}>{errors.years}</span>}
+                        <label>Life_span</label>
+                        {errors.life_span && <span className={style.warning}>{errors.life_span}</span>}
                         <input 
                         type='text' 
-                        name='years'
-                        value={dogData.years}
+                        name='life_span'
+                        value={dogData.life_span}
                         onChange={handleChange}
                         />
 

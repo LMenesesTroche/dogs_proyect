@@ -56,6 +56,7 @@ function App() {
           dispatch(addRaza(element));
         }
       });
+      dispatch(setSignal(1));
     }catch(error){ 
       console.log(error.message);
     }

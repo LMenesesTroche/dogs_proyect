@@ -29,9 +29,9 @@ export default function Card({ id ,image, name, weight, temperament, breed_group
                </div>
                <div className={styles.contenedorDerecho}>
                   <div className={styles.contenedorDeTextoQueNoEsTemperaments}>
-                     <h2 className={styles.name} >{name ? name : 'Unknown'}</h2>
-                     <h2 className={styles.weight}>{weight ? weight : 'Unknown'}</h2>
-                     <h2 className={styles.breed_group}>{breed_group ? breed_group : 'Unknown'}</h2>
+                     <h2 className={styles.name} >{name ? `${name}` : 'Unknown'}</h2>
+                     <h2 className={styles.weight}>{weight ? `${weight} kg` : 'Unknown'}</h2>
+                     <h2 className={styles.breed_group}>{breed_group ? `${breed_group}` : 'Unknown'}</h2>
                   </div>
                   <div className={styles.contenedorDeTemperamentos}>
                      <h2 className={styles.temperamentos}>{nuevo}</h2>    

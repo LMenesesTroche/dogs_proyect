@@ -5,10 +5,10 @@ const { Sequelize } = require('sequelize');
 
 async function postDogs(req, res) {
     //Desestructuramos lo que nos manden por body
-    const {  name, height, weight, years, temperament ,breed_group } = req.body;
+    const {  name, height, weight, life_span, temperament ,breed_group } = req.body;
     try {
         //Comprobamos que esten todos los datos
-        if ( !name || !height|| !weight || !years || !temperament|| !breed_group) {
+        if ( !name || !height|| !weight || !life_span || !temperament|| !breed_group) {
             return res.status(402).send({ message: 'Missing data' });
         }
         //Comprobamos que no nos manden tipos de datos que no corresponden
@@ -21,8 +21,8 @@ async function postDogs(req, res) {
         if(typeof weight !== 'string' ){
             return res.status(402).send({ message: 'Error on weight' });
         }
-        if(typeof years !== 'string' ){
-            return res.status(402).send({ message: 'Error on years' });
+        if(typeof life_span !== 'string' ){
+            return res.status(402).send({ message: 'Error on life_span' });
         }
         if(typeof breed_group !== 'string' ){
             return res.status(402).send({ message: 'Error on breed_group' });
@@ -40,7 +40,7 @@ async function postDogs(req, res) {
         
         //Creamnos el perro si no existe
         const createDog = await Dog.create({
-             name, height, weight, years, temperament, breed_group
+             name, height, weight, life_span, temperament, breed_group
         });
 
         //Creamos una tabla intemedia que guarde la relacion entre los tipos de temperamentos y el id del perro
