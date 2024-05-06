@@ -1,4 +1,4 @@
-import { ADD_RAZA, ADD_TEMPERAMENT, DELETE_ALL, ORDER_TEMPERAMENTS, FILTER_BY_ORIGIN, ORDER_BY_ABC, SET_CURRENT_PAGE, DELETE_DOG } from "./actions";
+import { ADD_RAZA, ADD_TEMPERAMENT, DELETE_ALL, ORDER_TEMPERAMENTS, FILTER_BY_ORIGIN, ORDER_BY_ABC, SET_SIGNAL, DELETE_DOG } from "./actions";
 
 const initialState = {
     misRazas:[],
@@ -100,8 +100,7 @@ const rootReducer = (state = initialState, {type, payload}) =>{
                     misRazas: sortedWeight
                 }
 
-            case SET_CURRENT_PAGE:
-                console.log(payload)
+            case SET_SIGNAL:
                 return{
                     ...state,
                     myCurrentPage:payload

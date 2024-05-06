@@ -1,7 +1,6 @@
-let temperament = ['hola', 'loco']
-let nuevo = ''
-if(temperament.length){
-  console.log(true)
-  nuevo = temperament.join(', ')
-}
-console.log(nuevo)
+const [currentPage, setCurrentPage ] = useState(0)
+
+useEffect(() => {
+    setItems([...misRazas].splice(currentPage * itemsPorPagina, itemsPorPagina));
+  },[misRazas, currentPage]);
+  

@@ -6,7 +6,7 @@ export const ORDER_TEMPERAMENTS = 'ORDER_TEMPERAMENTS';
 export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN';
 export const ORDER_BY_ABC = 'ORDER_BY_ABC';
 export const ORDER_BY_WEIGHT = 'ORDER_BY_WEIGHT';
-export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+export const SET_SIGNAL = 'SET_SIGNAL';
 export const DELETE_DOG = 'DELETE_DOG';
 
 
@@ -54,7 +54,7 @@ export function orderByWeight(weight){
 }
 export function setSignal(page){
     return{
-        type: SET_CURRENT_PAGE,
+        type: SET_SIGNAL,
         payload: page
     }
 }

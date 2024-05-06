@@ -76,6 +76,8 @@ function App() {
       let response = await axios.post(URL, props);
       if(response.data.message === "Data saved successfully"){
         dispatch(setSignal(1));
+        dispatch(deleteAll());
+        getDogs();
       }
       window.alert(response.data.message)
     }catch(error){
