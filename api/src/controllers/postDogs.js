@@ -30,7 +30,7 @@ async function postDogs(req, res) {
         }
         
         //Comprobamos que el nombre del perro no este en uso
-        const nameMinusculas = name.toLowerCase();
+        const nameMinusculas = name.toLowerCase().trim();
         const findDog = await Dog.findOne({  where: { name: Sequelize.where(Sequelize.fn('LOWER',Sequelize.col('name')),nameMinusculas) }});
         if (findDog) {
             return res.status(200).json({ message: "The dog's name already exists"});
