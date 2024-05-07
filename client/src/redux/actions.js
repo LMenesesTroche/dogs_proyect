@@ -9,14 +9,13 @@ export const ORDER_BY_WEIGHT = 'ORDER_BY_WEIGHT';
 export const SET_SIGNAL = 'SET_SIGNAL';
 export const DELETE_DOG = 'DELETE_DOG';
 
-
-
 export function addRaza(raza){
     return{
         type: ADD_RAZA,
         payload:raza
     }
 }
+
 export function addTemperament(temperament){
     return{
         type: ADD_TEMPERAMENT,

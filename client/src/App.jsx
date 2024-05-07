@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Login from './components/Login'
-import { Route, Routes, useLocation ,useNavigate} from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { addRaza, addTemperament, deleteAll, deleteDogRedux } from './redux/actions';
 import { setSignal } from './redux/actions';
 import Nav from './components/Nav';
@@ -8,15 +8,13 @@ import Home from './components/home';
 import Detail from './components/Detail';
 import axios from 'axios'
 import './App.css' 
-import { useSelector } from "react-redux";
 import Form from './components/Form';
 import { useDispatch } from 'react-redux';
 const URL = 'http://localhost:3001/dogs';
 
-//Nombre falso = AffenpinScher
 function App() {
   const dispatch = useDispatch();
-  const location = useLocation(); // Obtener la ubicación actual del enrutador
+  const location = useLocation();
 
   const onSearch = async (id) => {
     const  imagenURL = "https://api.thedogapi.com/v1/images"

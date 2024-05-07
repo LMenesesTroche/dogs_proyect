@@ -15,11 +15,9 @@ export default function Form({ postDog, getTemperaments}){
     const misTemperamentos = useSelector(state => state.misTemperamentos );
     const signal = useSelector(state => state.myCurrentPage );  
 
-    //Usar useEffect para evitar llamados infinitos
     useEffect(()=>{
         getTemperaments();
     },[])
-    // console.log(misTemperamentos)
     
     const [dogData, setUserData] = useState({
         name: '',
@@ -38,6 +36,7 @@ export default function Form({ postDog, getTemperaments}){
         breed_group:'',
         temperament:[],
     });
+    
     //Esperamos la signal y si llega borramos lo que hay en el form
     if(signal === 1){  
         setUserData(prevState => ({

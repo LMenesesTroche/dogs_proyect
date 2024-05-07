@@ -9,7 +9,6 @@ async function getTemperaments(req,res){
     try{
         
         let response = await axios.get(`${URL}`); 
-
         const arrDeTemperamentos = [];
 
         response.data.forEach(async(x)   =>{ 

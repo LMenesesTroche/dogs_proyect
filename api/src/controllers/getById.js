@@ -1,7 +1,5 @@
 const axios = require('axios');
 const { Dog } = require('../db');
-// const temperamentos = require('../models/temperaments');
-const Sequelize  = 'sequelize';
 const URL = 'https://api.thedogapi.com/v1/breeds/';
 
 //Necesita devolverme la raza y el temperamento de ese perro

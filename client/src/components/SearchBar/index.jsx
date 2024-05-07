@@ -6,12 +6,11 @@ const  SearchBar = (props) => {
    const { onSearch, getDogs } = props
    const [id, setId] = useState('')
    
-   const handleClick = () =>{//(Lo que pasa cuando hacemos click)
-      //Mandamos lo que ponen en el buscador a la funcion onSearch
+   const handleClick = () =>{
       onSearch(id);
    }
 
-   const handleChange = ({ target }) =>{//(Lo que pasa cuando cambiamos el input)
+   const handleChange = ({ target }) =>{
       setId(target.value);
    }
    const handleClickClear = () =>{
@@ -19,7 +18,7 @@ const  SearchBar = (props) => {
       getDogs()
       
    }
-//lol
+
    return(
       <div className={styles.ContainerNav}>
          <input 

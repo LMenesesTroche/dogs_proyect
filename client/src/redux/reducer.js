@@ -2,7 +2,7 @@ import { ADD_RAZA, ADD_TEMPERAMENT, DELETE_ALL, ORDER_TEMPERAMENTS, FILTER_BY_OR
 
 const initialState = {
     misRazas:[],
-    razasOriginales: [], // Almacenar las razas originales
+    razasOriginales: [], 
     misTemperamentos:[],
     myCurrentPage:0,
 }
@@ -13,7 +13,7 @@ const rootReducer = (state = initialState, {type, payload}) =>{
             return{
                 ...state,
                 misRazas:[...state.misRazas,payload],
-                razasOriginales: [...state.razasOriginales, payload], // Actualizar las razas originales
+                razasOriginales: [...state.razasOriginales, payload], 
             }
         case ADD_TEMPERAMENT:
             return{
@@ -24,25 +24,23 @@ const rootReducer = (state = initialState, {type, payload}) =>{
             return{
                 ...state,
                 misRazas:[],
-                razasOriginales: [], // Limpiar las razas originales
+                razasOriginales: [], 
             }
         case ORDER_TEMPERAMENTS:
             return{
                 ...state,
-                //Convertir "misRazas" a un filtrado de mis razas originales
                 misRazas:  payload !== 'all' ? state.razasOriginales.filter((element)=>element.temperament &&  element.temperament.includes(payload))  : state.razasOriginales
             }    
         case FILTER_BY_ORIGIN:
             return{
                 ...state,
-                misRazas: payload === 'api' //Si el payload es api 
-                ? state.razasOriginales.filter(element => !element.fromDataBase)//Quitamos los que tengan from database en true
-                : payload === 'dataBase'//Si es from database
-                ? state.razasOriginales.filter(element => element.fromDataBase) // quitamos los que tengan from database en false
-                : state.razasOriginales // Si payload es 'all', devolver todas las razasOriginales sin filtrar
+                misRazas: payload === 'api' 
+                ? state.razasOriginales.filter(element => !element.fromDataBase)
+                : payload === 'dataBase'
+                ? state.razasOriginales.filter(element => element.fromDataBase)
+                : state.razasOriginales
 
             } 
-            //todo revisar
             case ORDER_BY_ABC:
                 const sortedArr = payload === 'asc' ?
                 [...state.misRazas].sort(function (a, b) {
@@ -108,13 +106,9 @@ const rootReducer = (state = initialState, {type, payload}) =>{
             case DELETE_DOG:
                 return{
                     ...state,
-                    //Convertir "misRazas" a un filtrado de mis razas originales
                     razasOriginales:  state.razasOriginales.filter((perro)=>perro.id !== payload),
                     misRazas:  state.razasOriginales.filter((perro)=>perro.id !== payload)
-
                 } 
-       
-            
         default:
             return{...state};
     }

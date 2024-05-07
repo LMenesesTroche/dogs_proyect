@@ -3,10 +3,9 @@ const { Dog } = require('../db');
 const URL = 'https://api.thedogapi.com/v1/breeds';
 const { Sequelize } = require('sequelize');
 
-//Necesita devolverme los perros que tengan la raza mandada
 async function getByRaza(req,res){
     
-    let { raza } = req.params; //sacamos la raza que nos pasan por params
+    let { raza } = req.params; 
     
     if(raza === undefined || raza === null){
         res.status(400).json("La raza no esta definida");
@@ -28,7 +27,9 @@ async function getByRaza(req,res){
                 }  
             }
         }); 
+        //Limpiamos los nulls 
         let perrosEnApiSinNull = [];
+        
         arrayDePerros.forEach(element => {
             if(element){
                 perrosEnApiSinNull.push(element);

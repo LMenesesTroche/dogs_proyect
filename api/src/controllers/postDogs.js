@@ -1,10 +1,8 @@
-const axios = require("axios");
 const { Dog, Temperaments } = require("../db");
 const { Sequelize } = require('sequelize');
 
 
 async function postDogs(req, res) {
-    //Desestructuramos lo que nos manden por body
     const {  name, height, weight, life_span, temperament ,breed_group } = req.body;
     try {
         //Comprobamos que esten todos los datos
@@ -47,14 +45,11 @@ async function postDogs(req, res) {
         await Promise.all(temperament.map(async (temp) => {
             try {
                 //Creamos el temperamento que le ponen al perro si es que no existen ya
-                //TODO que es created?
-                //            ???????
                 const [temper, created] = await Temperaments.findOrCreate({
                     where: { name: temp },
                     defaults: { name: temp }
                 });
                 if (temper) {
-                    //Quees addtemperaments?
                     await createDog.addTemperaments(temper); 
                 }
             } catch (error) {

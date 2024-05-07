@@ -3,7 +3,9 @@ const { Dog } = require('../db')
 async function deleteDog (req, res){
     let { Id } = req.params; //sacamos la raza que nos pasan por params
     try{
+        //Lo buscamos
         const hayElPerro = await Dog.findOne({ where: { id:Id }});
+        //Si hay lo eliminamos
         if(hayElPerro){
             await hayElPerro.destroy();
             const todosLosPerros = await Dog.findAll();
