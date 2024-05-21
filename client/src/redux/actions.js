@@ -3,16 +3,18 @@ export const ADD_RAZA = 'ADD_RAZA';
 export const ADD_TEMPERAMENT = 'ADD_TEMPERAMENT';
 export const DELETE_ALL = 'DELETE_ALL';
 export const ORDER_TEMPERAMENTS = 'ORDER_TEMPERAMENTS';
-export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN';
+export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN';             //? Todo esto solo para evitar errores de sintaxis
 export const ORDER_BY_ABC = 'ORDER_BY_ABC';
 export const ORDER_BY_WEIGHT = 'ORDER_BY_WEIGHT';
 export const SET_SIGNAL = 'SET_SIGNAL';
 export const DELETE_DOG = 'DELETE_DOG';
 
-export function addRaza(raza){
+//Nos mandan las señales desde cualquier componente y llegan aqui primero
+export function addRaza(raza){//(Significa add perro)
     return{
+        //Cuando llega un addraza
         type: ADD_RAZA,
-        payload:raza
+        payload:raza// Lo mandamos al reducer con este payload(mensaje)
     }
 }
 

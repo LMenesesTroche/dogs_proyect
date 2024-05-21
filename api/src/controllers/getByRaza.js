@@ -5,8 +5,9 @@ const { Sequelize } = require('sequelize');
 
 async function getByRaza(req,res){
     
-    let { raza } = req.params; 
+    let { raza } = req.params; //We take the race through params
     
+    //If there is noting on raza we send the massage
     if(raza === undefined || raza === null){
         res.status(400).json("La raza no esta definida");
     }
@@ -29,16 +30,15 @@ async function getByRaza(req,res){
         }); 
         //Limpiamos los nulls 
         let perrosEnApiSinNull = [];
-        
         arrayDePerros.forEach(element => {
             if(element){
                 perrosEnApiSinNull.push(element);
             }
         });
-
+        //we search the dogs on the database
         const arrDePerrosEnDb = await Dog.findAll({ 
             where: { breed_group: Sequelize.where(Sequelize.fn('LOWER',Sequelize.col('breed_group')),razaEnMinusculas) }});
-        
+        //We concat the two arrays (dogs from database and API)
         const dbyApi = arrDePerrosEnDb.concat(perrosEnApiSinNull);
 
         //si no hay perros de esa raza

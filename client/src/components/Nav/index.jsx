@@ -19,7 +19,9 @@ const Nav = ({  onSearch, getDogs }) => {
           <Link to={`/`}>
               <button className={styles.buttonOut}>LogOut</button>
           </Link>
-          
+          <Link to={`/upload`}>
+            <button className={styles.buttonOut}>Upload</button>
+          </Link>
             <SearchBar onSearch={onSearch} getDogs={getDogs} />
         </div>
     </>

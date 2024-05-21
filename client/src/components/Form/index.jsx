@@ -5,7 +5,7 @@ import style from './styles.module.css';
 import { useSelector } from "react-redux";
 import { setSignal } from '../../redux/actions';
 import { useDispatch } from 'react-redux';
-import {Link} from 'react-router-dom'
+import {Link, useOutlet} from 'react-router-dom'
 
 const URL = 'http://localhost:3001/dogs';
 
@@ -15,9 +15,9 @@ export default function Form({ postDog, getTemperaments}){
     const misTemperamentos = useSelector(state => state.misTemperamentos );
     const signal = useSelector(state => state.myCurrentPage );  
 
-    useEffect(()=>{
-        getTemperaments();
-    },[])
+    // useEffect(()=>{
+    //     getTemperaments();
+    // },[])
     
     const [dogData, setUserData] = useState({
         name: '',
@@ -83,8 +83,6 @@ export default function Form({ postDog, getTemperaments}){
           [name]: value
         }));
     };
-
-
     
     return(
         <div className={styles.container} onSubmit={handlerSubmit}>
@@ -163,6 +161,8 @@ export default function Form({ postDog, getTemperaments}){
                     </div>
                 </div>
             </form>
+
+            
         </div>
 
     )

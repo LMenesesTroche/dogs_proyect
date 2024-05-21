@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
-const { v4: uuidv4 } = require('uuid');
-
+const { v4: uuidv4 } = require('uuid');//This is for to make a unique id
+//This is the model in wich we save the data from the dogs
 module.exports = (sequelize) => {
   sequelize.define('Dog', {
     id: {

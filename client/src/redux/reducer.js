@@ -1,19 +1,22 @@
 import { ADD_RAZA, ADD_TEMPERAMENT, DELETE_ALL, ORDER_TEMPERAMENTS, FILTER_BY_ORIGIN, ORDER_BY_ABC, SET_SIGNAL, DELETE_DOG } from "./actions";
 
-const initialState = {
-    misRazas:[],
-    razasOriginales: [], 
+const initialState = {//Esto es mi memoria temporal global.
+    misRazas:[],//Mis perros que se muestran en la pantalla
+    razasOriginales: [], //Los perros que tengo sin filtrar o alterar nada(no se muestran en la pantalla)
     misTemperamentos:[],
     myCurrentPage:0,
 }
 
 const rootReducer = (state = initialState, {type, payload}) =>{
     switch(type){
+        //En caso de que me llegue uno con el nombre add raza(add perro)
         case ADD_RAZA:
             return{
-                ...state,
-                misRazas:[...state.misRazas,payload],
-                razasOriginales: [...state.razasOriginales, payload], 
+                //TODO MUY IMPORTANTE AQUI SIEMRPE HACER UNA COPIA  DEL ESTADO  
+                //Caso contrario borraria todo lo demas que este(temperamentos, myCurrenPage etc)
+                ...state,//copia del estado
+                misRazas:[...state.misRazas,payload],//Significa que mis razas sean una copia del misrazas del estrado, junto con el payload
+                razasOriginales: [...state.razasOriginales, payload], //significa que lo mismo de arriba pero guardandolo en mis razas originales
             }
         case ADD_TEMPERAMENT:
             return{
@@ -31,7 +34,7 @@ const rootReducer = (state = initialState, {type, payload}) =>{
                 ...state,
                 misRazas:  payload !== 'all' ? state.razasOriginales.filter((element)=>element.temperament &&  element.temperament.includes(payload))  : state.razasOriginales
             }    
-        case FILTER_BY_ORIGIN:
+        case FILTER_BY_ORIGIN://Necesario usar : y ? para if else
             return{
                 ...state,
                 misRazas: payload === 'api' 

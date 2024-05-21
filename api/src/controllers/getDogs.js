@@ -18,7 +18,7 @@ async function getDogs(req,res){
             breed_group:x.breed_group,
             };
           }); 
-          
+        //We push the copi of the array of dogs on the Db to array of Dogs
         arrayPerros.push(...arrDePerrosEnDb);
         res.status(200).send(arrayPerros);
 
