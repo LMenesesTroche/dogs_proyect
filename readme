@@ -1,3 +1,9 @@
 Para iniciar el programa primero se debe hacer un npm install en la terminal principal de dogs
 luego debemos poner npm start en la terminal de la carpeta api
 y luego poner npm run dev en la carpeta client 
+
+Si lo estas descargando en tu compu probablemente no haya el archivo .env, en ese caso deberas crear uno y ponerle:
+
+DB_USER=tuUsuarioDeSQL
+DB_PASSWORD=tuPassword
+DB_HOST=localhost
