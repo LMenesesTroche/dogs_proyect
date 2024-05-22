@@ -1,41 +1,39 @@
 import React, { useState } from 'react';
 import validation from './validations.js';  
 import styles from "./styles.module.css";
-import image from "./perrito.jpg";
 import {Link} from 'react-router-dom'
 
 
-export const Login = ({ login }) => {
-  const [userData, setUserData] = useState({
-    username: "",
-    password: "",
-  });
-
-  const [errors, setErrors] = useState({
-    username: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    setUserData({
-      ...userData,
-      [e.target.name]: e.target.value,
-    });
-    setErrors(validation({
-      ...userData,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    login(userData);
-  };
+export const SignUp = ({ createUser }) => {
+    const [userData, setUserData] = useState({
+        username: "",
+        password: "",
+      });
+    
+      const [errors, setErrors] = useState({
+        username: "",
+        password: "",
+      });
+    
+      const handleChange = (e) => {
+        setUserData({
+          ...userData,
+          [e.target.name]: e.target.value,
+        });
+        setErrors(validation({
+          ...userData,
+          [e.target.name]: e.target.value,
+        }));
+      };
+    
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        createUser(userData);
+      };
 
   return (
     <div className={styles.container}>
-      <div className={styles.containerPequeño}>
-        <img src={image} className={styles.imagen} alt="Imagen de perrito" />
+        <div className={styles.containerPequeño}>
         <form onSubmit={handleSubmit}>
           <label>username</label>
           <input
@@ -67,10 +65,10 @@ export const Login = ({ login }) => {
             <span className={styles.warning}>{errors.username}</span>
           )}
 
-           <button type='submit' className={styles.button}>Login</button> 
+           <button type='submit' className={styles.button}>Create User</button> 
 
-           <Link to={`/signUp`}>
-            <h4>Sign Up</h4>  
+           <Link to={`/`}>
+            <h4>Sign In</h4>  
           </Link>
         </form>
 
@@ -79,4 +77,4 @@ export const Login = ({ login }) => {
   );
 };
 
-export default Login;
+// export default SignUp;

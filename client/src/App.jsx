@@ -16,6 +16,7 @@ import Detail from "./components/Detail";
 import Upload from "./components/upload";
 import Form from "./components/Form";
 import "./App.css";
+import { SignUp } from "./components/SignUp";
 const URL = "http://localhost:3001/dogs"; //We make petitions from here to the back
 
 function App() {
@@ -138,9 +139,19 @@ function App() {
     setAcces(false);
   }
 
+  const createUser = async (props) => {
+    try {
+      console.log("Le estoy mandando estos datos", props)
+      let response = await axios.post(`${URL}/createuser/`, props);
+      window.alert(response.data.message)
+    } catch (error) {
+      console.error("Error al enviar los datos:", error);
+    }
+  };
+
   return (
     <div className="App">
-      {location.pathname !== "/" ? (
+      {location.pathname !== "/" && location.pathname !== "/signUp" ? (
         //We send the function here for the component to be able to use it
         <Nav onSearch={onSearch} getDogs={getDogs} logOut={logOut}/>
       ) : undefined}
@@ -159,6 +170,11 @@ function App() {
         <Route
           path="/form/"
           element={<Form postDog={postDog} getTemperaments={getTemperaments} />}
+        />
+
+        <Route
+          path="/signUp/"
+          element={<SignUp createUser={createUser}/>}
         />
 
         <Route path="/upload/" element={<Upload />} />

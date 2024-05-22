@@ -15,14 +15,14 @@ async function createUser(req, res) {
         });
 
         if (findUsernameOnDB) {
-            return res.status(200).send("The username is already taken");
+            return res.status(200).send({ message: "The username is already taken" });
         }
 
         const createNewUser = await Users.create({
             username, password
         });
         // const newUser = await Users.create({ username: usernameLowered, password });
-        return res.status(201).json("Se creo exitosamente");
+        return res.status(201).json({ message: "Se creo exitosamente" });
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
