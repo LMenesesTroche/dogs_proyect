@@ -8,25 +8,30 @@ const getById = require('../controllers/getById');
 const getByRaza = require('../controllers/getByRaza');
 const deleteDog = require('../controllers/deleteDog');
 const createTemperament = require('../controllers/createTemperament');
-
+const login = require("../controllers/login");
+const createUser = require('../controllers/createUser');
 
 const myRouter = express.Router();
 
-myRouter.get('/dogs',getDogs); 
+myRouter.post('/dogs/createuser/', createUser);
 
-myRouter.get('/dogs/id/:id',getById); 
+myRouter.post('/dogs/login/', login);
 
-myRouter.get('/dogs/name/',getByName); 
+myRouter.get('/dogs', getDogs);
 
-myRouter.post('/dogs',postDogs); 
+myRouter.get('/dogs/id/:id', getById);
 
-myRouter.get('/dogs/temperaments',getTemperaments); 
+myRouter.get('/dogs/name/', getByName);
 
-myRouter.get('/dogs/raza/:raza',getByRaza); 
+myRouter.post('/dogs', postDogs);
 
-myRouter.delete('/dogs/delete/:Id',deleteDog); 
+myRouter.get('/dogs/temperaments', getTemperaments);
 
-myRouter.post('/dogs/createTemperament/',createTemperament); 
+myRouter.get('/dogs/raza/:raza', getByRaza);
+
+myRouter.delete('/dogs/delete/:Id', deleteDog);
+
+myRouter.post('/dogs/createTemperament/', createTemperament);
 
 
 module.exports = myRouter;

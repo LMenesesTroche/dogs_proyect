@@ -14,9 +14,7 @@ const  SearchBar = (props) => {
       setId(target.value);
    }
    const handleClickClear = () =>{
-      
       getDogs()
-      
    }
 
    return(

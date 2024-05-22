@@ -1,6 +1,6 @@
 // Importamos los módulos necesarios
 const axios = require('axios');
-const { Temperaments } = require("../db");
+const { Temperaments } = require("../DB");
 const { Sequelize } = require('sequelize');
 
 // Función asincrónica para crear un temperamento

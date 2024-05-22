@@ -3,7 +3,10 @@ import SearchBar from "../SearchBar/index";
 import {Link} from 'react-router-dom'
 import styles from './styles.module.css'
 import image from './logoPatitas.jpg'
-const Nav = ({  onSearch, getDogs }) => {
+const Nav = ({  onSearch, getDogs, logOut }) => {
+  const handleClick = () =>{
+    logOut();
+ }
   return (
     <>
         <div className={styles.container}>
@@ -17,7 +20,7 @@ const Nav = ({  onSearch, getDogs }) => {
               <button className={styles.button}>Form</button>
           </Link>
           <Link to={`/`}>
-              <button className={styles.buttonOut}>LogOut</button>
+              <button onClick={handleClick} className={styles.buttonOut}>LogOut</button>
           </Link>
           <Link to={`/upload`}>
             <button className={styles.buttonOut}>Upload</button>
