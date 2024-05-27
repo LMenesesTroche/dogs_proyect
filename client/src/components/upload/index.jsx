@@ -1,23 +1,35 @@
+import { useState } from "react";
 import styles from "./styles.module.css";
+import axios from "axios"
 
 export default function upload() {
-  // const imagePreview = document.getElementById('img-preview');
-  // const imageUploader = document.getElementById('img-uploader');
+  const [urlImagen, seturlImagen] = useState("");
 
-  // imageUploader.addEventListener('change',(e)=>{
-  //     console.log(e)
-  // })
-  const handleUpload = (event) => {
-    const file = event.target.files[0];
+  const changeUploadImage = async (e) =>{
+    const file = e.target.files[0];
+    const data = new FormData();
+
+    data.append("file" , file);
+    data.append("upload_preset" , "neoShopPreset")
+
+    const response = await axios.post("https://api.cloudinary.com/v1_1/decbwosgj/image/upload", data)
+    seturlImagen(response.data.secure_url);
+    console.log(response.data)
   };
-
   return (
-    <div className={styles.container}>
-      <div className={styles.imgInput}>
-        <img id="img-preview"></img>
-        <div className={styles.cardFooter}>
-          <input onChange={handleUpload} type="file" id="img-uploader" />
-        </div>
+    <div >
+      <h1>Seleccionar imagen</h1>
+      <div>
+        <input type="file" accept="image/*" onChange={changeUploadImage} />
+        {
+          urlImagen && (
+            <div>
+              <img src={urlImagen}/>
+              <button>Eliminar Imagen</button>
+            </div>
+          )
+        }
+        
       </div>
     </div>
   );
